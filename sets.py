@@ -1,0 +1,1 @@
+print(set('my name is eric and eric is my name'.split()))

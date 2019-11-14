@@ -1,0 +1,6 @@
+def foo(first,second,third,*therest):
+    print('first: %s'%(first))
+    print('second: %s'%(second))
+    print('third: %s'%(third))
+    print('and all the rest... %s' %(list(therest)))
+foo(1,2,3,4,5)
