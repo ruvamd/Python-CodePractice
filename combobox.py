@@ -12,5 +12,3 @@ month.set('choose month')
 month.get()
 year=StringVar()
 Spinbox(root,from_=2000,to=2019,textvariable=year).pack()
-
-
