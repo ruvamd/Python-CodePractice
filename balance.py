@@ -1,8 +1,9 @@
 def main():
     custName=inputCustName()
     custBal,balType=inputCustBalance()
-    print('Customer name = '+str(custName[0]))
-    print('Customer balance = '+format(custBal,'.2f')+','+balType)
+    
+    print('Customer name = ',str(custName[0]))
+    print(f'Customer balance = {custBal}',balType)
 
 def inputCustName():
     name=input('Enter the customer name: ')
@@ -10,11 +11,10 @@ def inputCustName():
     return nameParts
 
 def inputCustBalance():
-    balance=0.0
     custBalance=float(input('Enter customer balance: '))
     if custBalance>=0:
         balanceType=' Non-negative'
     else:
         balanceType='Negative'
-    return balance,balanceType
+    return custBalance,balanceType
 main()

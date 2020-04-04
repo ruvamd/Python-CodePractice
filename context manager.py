@@ -8,5 +8,5 @@ def simpleContextManager(obj):
         obj.someProperty -=1
 class someObj(object):
     def __init__(self,arg):
-        self.someProperty=arg
+        self.someProperty=arg 
         

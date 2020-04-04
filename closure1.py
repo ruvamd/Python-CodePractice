@@ -6,4 +6,4 @@ def print_msg(number):
         print(number)
     printer()
     print(number)
-print_msg(9)
+print_msg(6)

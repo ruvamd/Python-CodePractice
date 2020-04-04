@@ -10,3 +10,4 @@ class jeans:
     def takeOff(self):
         print(f'taking off {self.waist}x{self.length} {self.color} jeans')
         self.wearing=False
+        

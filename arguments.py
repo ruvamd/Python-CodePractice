@@ -4,6 +4,7 @@ def main():
 def kitten(**kwargs):
     if len(kwargs):
         for k in kwargs:
-            print('kitten {} says {}'.format(k,kwargs[k]))
+            #print('kitten {} says {}'.format(k,kwargs[k]))
+            print(f'kitten {k} says {kwargs[k]}')
     else: print('meaw')
 main()  

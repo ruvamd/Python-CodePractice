@@ -1,5 +1,2 @@
 name=input('enter your name  ')
 print(name)
-print('dsfdfdfi')
-print()
-print('dkmcdkm\ninienief')

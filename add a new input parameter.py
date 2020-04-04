@@ -7,7 +7,7 @@ def mixAndCook():
     print('turn off the stove')
 def makeOmelette(ingredient):
     mixAndCook()
-    omelette='a {} omelette'.format(ingredient)
+    omelette=f'a {ingredient} omelette'
     return omelette
 def makePancake():
     mixAndCook()
@@ -15,5 +15,5 @@ def makePancake():
     return pancake
 def fancyOmelette(*ingredients):
     mixAndCook()
-    omelette='a fency omelette with {} ingredients'.format(len(ingredients))
+    omelette=f'a fency omelette with {len(ingredients)} ingredients'
     return omelette
