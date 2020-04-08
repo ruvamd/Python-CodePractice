@@ -16,6 +16,8 @@ button.state(['!disabled'])
 ('disabled',)
 
 logo=PhotoImage(file='/Users/vadim/Pictures/usa-map.gif')
+
 button.config(image=logo,compound=LEFT)
+
 smallLogo=logo.subsample(5,5)
 button.config(image=smallLogo)

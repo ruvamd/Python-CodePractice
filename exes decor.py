@@ -8,11 +8,13 @@ def type_check(correct_type):
         return new_function
     return check
 @type_check(int)
+
 def times2(num):
     return num*2
 print(times2(2))
 times2('not a number')
 @type_check(str)
+
 def first_letter(word):
     return word[0]
 print(first_letter('hello world'))

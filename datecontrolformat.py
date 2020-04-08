@@ -1,5 +1,6 @@
 from datetime import datetime
 current_date=datetime.now()
+
 print('minute: '+str(current_date.minute))
 print('hour: '+str(current_date.hour))
 print('day: '+str(current_date.day))

@@ -1,6 +1,12 @@
-actor={'name':'john cleese','rank':'awesome'}
-def get_last_name():
+actor={'name':'jone jones','rank':'good'}
+
+def getLastName():
     return actor['name'].split()[1]
-get_last_name()
-print('all exceptions caught!Good job!')
-print('the actor`s last name is %s'%get_last_name())
+getLastName()
+
+def getRank():
+    return actor['rank'].split()[0]
+getRank()
+
+print('secection done')
+print(f'tha actors last name is: {getLastName()} and rank is: {getRank()}')

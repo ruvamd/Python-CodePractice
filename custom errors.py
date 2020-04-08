@@ -4,12 +4,14 @@ class electricError(Exception):
         self.problem=problem
     def __str__(self):
         return f'the {self.device} is {self.problem}!'
+
 class plumbingError(Exception):
     def __init__(self,device,problem):
         self.device=device
         self.problem=problem
     def __str__(self):
         return f'the {self.device} is {self.problem}!'
+
 def causeError(errorType):
     if errorType=='electrical':
         raise electricError('circuit breaker','overloaded')

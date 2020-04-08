@@ -3,6 +3,7 @@ def fib():
     while 1:
          yield a
          a,b=b,a+b
+
 import types
 if type(fib())==types.GeneratorType:
     print("good,the fib function is a generator.")
