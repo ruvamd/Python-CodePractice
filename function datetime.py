@@ -1,9 +1,9 @@
 import datetime
+
 def printTime():
     print(datetime.datetime.now())
-    print('task completed')
-    print()
-
+    print('task completed\n')
+    
 firstName='susan'
 printTime()
 

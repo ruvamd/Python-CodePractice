@@ -1,5 +1,9 @@
-dishes=['bowl','plate','cup']
-
-for dish in list(dishes):
-    print(f'putting {dish} in the sink')
-    dishes.remove(dish)
+items=['apple','pear','orange','banana','kiwi',
+       'apple','pear','orange','banana','kiwi',
+       'apple','pear','orange','banana','kiwi']
+counter=dict()
+for item in items:
+    if (item in counter.keys()):
+        counter[item]+=1
+    else:counter[item]=1
+print(counter)

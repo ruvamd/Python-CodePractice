@@ -4,3 +4,5 @@ def evenIntFunc(n):
         if i%2==0:
             result.append(i)
     return result
+n=int(input('Enter the number: '))
+print(evenIntFunc(n))
