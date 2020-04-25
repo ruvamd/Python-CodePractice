@@ -1,4 +1,5 @@
 from html.parser import HTMLParser
+
 class HTMLParser(HTMLParser):
     def handle_starttag(self, tag, attrs):
         print('start tag:',tag)
@@ -10,6 +11,7 @@ class HTMLParser(HTMLParser):
         print('comment:',data)
     def handle_data(self, data):
         print('data:',data)
+
 parser=HTMLParser()
 parser.feed('<html><head><title>Coder</title></head><body><h1><!--hi-->I am a coder</h1></body>')
 print()

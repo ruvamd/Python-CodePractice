@@ -1,6 +1,9 @@
 from functools import reduce
+
 numbers=[3,4,6,9,34,12]
-def custom_sum(first,second):
+
+def customSum(first,second):
     return first+second
-result=reduce(custom_sum,numbers,10)
+
+result=reduce(customSum,numbers,10)
 print(result)

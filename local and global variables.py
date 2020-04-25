@@ -10,13 +10,13 @@ def makeOmelette():
     global cheese
     cheese='swiss'
     mixAndCook()
-    omelette='a {} omelette'.format(cheese)
+    omelette=f'a {cheese} omelette'
     return omelette
 def makePancake():
     mixAndCook()
-    pancake='a {} pancake'.format(cheese)
+    pancake=f'a {cheese} pancake'
     return pancake
 def fancyOmelette(*ingredients):
     mixAndCook()
-    omelette='a fency omelette with {} ingredients'.format(len(ingredients))
+    omelette=f'a fency omelette with {len(ingredients)} ingredients'
     return omelette

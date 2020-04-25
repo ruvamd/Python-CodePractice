@@ -5,4 +5,4 @@ def aNum(startNum,endNum):
        #total+=num
         count+=1
     print(count)
-aNum(1,4)
+aNum(1,9)

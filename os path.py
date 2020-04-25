@@ -16,5 +16,4 @@ def main():
     td=datetime.datetime.now()-datetime.datetime.fromtimestamp(path.getmtime('textfile.txt'))
     print('it has been '+str(td)+' since the file was modified')
     print('or, '+str(td.total_seconds())+' seconds')
-
 main()

@@ -1,4 +1,5 @@
 import time
+
 hungry=True
 while(hungry):
     print('opening the front door')
@@ -10,4 +11,4 @@ while(hungry):
         print('not yet...')
     print('closing the front door')
     frontDoor.close()
-    time.sleep(5)
+    time.sleep(1)

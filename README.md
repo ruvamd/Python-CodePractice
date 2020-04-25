@@ -1,2 +1,2 @@
 # CodePractice-Python
-The entry and midlevel practice code.
+The entry and mid level practice code.

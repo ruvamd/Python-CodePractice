@@ -3,4 +3,4 @@ def aNum(sNum,eNum):
     for num in range(sNum,eNum+1):
         total+=num
     print(total)
-aNum(1,3)
+aNum(1,9)

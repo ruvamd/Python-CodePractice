@@ -13,6 +13,6 @@ def newLogFile(name):
         yield f
     finally:
         f.write(footer)
-        print 'logfile created'
+        print('logfile created')
         f.close()
         

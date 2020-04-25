@@ -5,5 +5,5 @@ def main():
         print(line.rstrip(),file=outfile)
         print('.',end='',flush=True)
         outfile.close()
-        print('\ndone.')
+        print('\n done.')
 main()

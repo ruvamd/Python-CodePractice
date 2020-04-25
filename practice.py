@@ -1,9 +1,3 @@
-items=['apple','pear','orange','banana','kiwi',
-       'apple','pear','orange','banana','kiwi',
-       'apple','pear','orange','banana','kiwi']
-counter=dict()
-for item in items:
-    if (item in counter.keys()):
-        counter[item]+=1
-    else:counter[item]=1
-print(counter)
+#3x3-2x2+3x-1
+x=-1 
+print(3*x**3-2*x**2+3*x-1)
