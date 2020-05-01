@@ -1,4 +1,6 @@
-text='place here: %.0f'
-number=23746
-
-print(text %number)
+def minToHours(minutes,seconds):
+    hours=minutes/60
+    seconds=seconds/3600
+    convert=hours,seconds
+    return convert
+print(minToHours(80,56))
