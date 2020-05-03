@@ -1,0 +1,5 @@
+names=['a','b','c']
+emails=['one@gmail.com','two.hotmail.com','three@mail.com']
+
+for i,j in zip(names,emails):
+    print(i,j)
