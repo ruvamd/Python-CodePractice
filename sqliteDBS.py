@@ -14,8 +14,6 @@ def insert(item,quantity,price):
     connect.commit()
     connect.close()
 
-insert('water glass',10,5)
-
 def view():
     connect=sqllite3.connect('lite.db')
     cursor=connect.cursor()
@@ -25,3 +23,4 @@ def view():
     return rows
 
 print(view())
+insert('water glass',10,5)
