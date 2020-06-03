@@ -1,3 +1,4 @@
-def conf(val):
-    print(val[0])
-conf([1,2,3,4,5,6])
+def print_seconds(hours, minutes, seconds):
+    print(3600,120,1)
+
+print_seconds(1,2,3)
