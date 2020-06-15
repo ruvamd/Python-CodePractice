@@ -1,4 +1,21 @@
-def print_seconds(hours, minutes, seconds):
-    print(3600,120,1)
+def counter(start, stop):
+	x = start
+	if x>stop:
+		return_string = "Counting down: "
+		while x >= stop:
+			return_string += str(x)
+			if x<=stop:
+				return_string += ","
+			
+	else:
+		return_string = "Counting up: "
+		while x <= stop:
+			return_string += str(x)
+			if ___:
+				return_string += ","
+			___
+	return return_string
 
-print_seconds(1,2,3)
+print(counter(1, 10)) # Should be "Counting up: 1,2,3,4,5,6,7,8,9,10"
+print(counter(2, 1)) # Should be "Counting down: 2,1"
+print(counter(5, 5)) # Should be "Counting up: 5"
