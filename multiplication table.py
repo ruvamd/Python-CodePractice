@@ -1,6 +1,6 @@
 def multiplication_table(start, stop):
-	for x in range(1,4):
-		for y in range(1,4):
+	for x in range(1,10):
+		for y in range(1,10):
 			print(str(x*y), end=" ")
 		print('\n')
 

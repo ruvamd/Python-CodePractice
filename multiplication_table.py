@@ -7,7 +7,7 @@ def multiplication_table(number):
 		# What is the additional condition to exit out of the loop?
 		if result>=26:
 			break
-		print(str(number) + "x" + str(multiplier) + "=" + str(result))
+		print(f'{number}x{multiplier}={result}')
 		# Increment the variable for the loop
 		multiplier += 1
 

@@ -1,21 +1,17 @@
-def counter(start, stop):
-	x = start
-	if x>stop:
-		return_string = "Counting down: "
-		while x >= stop:
-			return_string += str(x)
-			if x<=stop:
-				return_string += ","
-			
-	else:
-		return_string = "Counting up: "
-		while x <= stop:
-			return_string += str(x)
-			if ___:
-				return_string += ","
-			___
-	return return_string
+import os
 
-print(counter(1, 10)) # Should be "Counting up: 1,2,3,4,5,6,7,8,9,10"
-print(counter(2, 1)) # Should be "Counting down: 2,1"
-print(counter(5, 5)) # Should be "Counting up: 5"
+def new_directory(directory, filename):
+  # Before creating a new directory, check to see if it already exists
+  if os.path.isdir(directory) == False:
+    os.mkdir('PythonPrograms')
+
+  # Create the new file inside of the new directory
+  os.chdir('PythonPrograms')
+  with open('script.py','w') as file:
+    pass
+  os.chdir('..')
+
+  # Return the list of files in the new directory
+  return os.listdir('PythonPrograms')
+
+print(new_directory("PythonPrograms", "script.py"))
