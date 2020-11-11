@@ -7,8 +7,13 @@ label.pack()
 
 def close():
     exit()
+def conv():
+    return round(yearSal/12/4/5/8,2)
 button=Button(win,text='close',command=close)
+button=Button(win,text='conv',command=conv)
 button.pack()
+
+entryBox=win.Entry(win) #need to finish entry box
 
 # yearSal=int(input('Enter the year salary: '))
 # def convYearToHourSal():
