@@ -12,7 +12,7 @@ def add_year(date_obj):
   return new_date_obj
 
 def next_date(date_string):
-  # Convert the argument from string to date object
+  # Convert the argument from string to date objects
   date_obj = datetime.datetime.strptime(date_string, r"%Y-%m-%d")
   next_date_obj = add_year(date_obj)
 
