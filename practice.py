@@ -1,3 +1,1 @@
-def hello(name,last):
-    print('hello',name,last)
-hello('vadim','rusu')
+print(*(1,2,3))
