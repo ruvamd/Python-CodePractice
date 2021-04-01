@@ -1,7 +1,5 @@
-A = {'red', 'green', 'blue'}
-B = {'yellow', 'red', 'orange'}
+import re
+#x=[]
+for _ in range(int(input())):
+    print(bool(re.match(r'^[-+]?\d*.\d+&',input())))
 
-A &= B
-print(A)
-# Prints {'red'}
-    
