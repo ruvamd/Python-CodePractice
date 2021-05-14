@@ -1,5 +1,6 @@
-import re
-#x=[]
-for _ in range(int(input())):
-    print(bool(re.match(r'^[-+]?\d*.\d+&',input())))
-
+i=5
+for _ in i:
+    print(i)
+    i+=1
+    if i==8:
+        
