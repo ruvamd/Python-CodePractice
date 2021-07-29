@@ -1,6 +1,8 @@
 import numpy as np
 
-arr=np.array(map(int,input().split()))
-#arr=np.array([[1,2],[3,4]])
-print(np.sum(arr,axis=0),np.sum(arr,axis=1),np.sum(arr,axis=None),np.sum(arr))
-print(np.prod(arr,))
+nRow,mCol=map(int,input().split())
+arr=np.array([input().split() for _ in range(nRow)],int)
+arrSum=(np.sum(arr,axis=0))
+arrProd=(np.prod(arrSum))
+
+print(arrProd)
