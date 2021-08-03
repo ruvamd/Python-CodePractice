@@ -1,8 +1,14 @@
 import re
-
-s = input()
-k = input()
-if k in s:
-    print(*[(i.start(), (i.start()+len(k)-1)) for i in re.finditer(r'(?={})'.format(k), s)], sep='\n')
-else:
-    print('(-1, -1)')
+s,k=input(),input() #enter: aaadaa
+                          # aa
+m=list(re.finditer('(?=(%s))'%k,s))
+if not m:
+    print((-1,-1))
+for i in m:
+    print((i.start(1),i.end(1)-1))
+'''
+otput:
+(0, 1)  
+(1, 2)
+(4, 5)
+'''
