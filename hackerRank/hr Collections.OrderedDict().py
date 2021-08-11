@@ -1,3 +1,16 @@
+'''
+enter:
+9
+BANANA FRIES 12
+POTATO CHIPS 30
+APPLE JUICE 10
+CANDY 5
+APPLE JUICE 10
+CANDY 5
+CANDY 5
+CANDY 5
+POTATO CHIPS 30
+'''
 from collections import OrderedDict
 od=OrderedDict()
 for _ in range(int(input())):
@@ -5,6 +18,13 @@ for _ in range(int(input())):
     od[name]=od.get(name,0)+int(price)
 for name,price in od.items():
     print(name,price)
+'''
+output:
+BANANA FRIES 12
+POTATO CHIPS 60
+APPLE JUICE 20
+CANDY 20
+'''
 
 #---test---
 # if NItm<0 and NItm>=100:
