@@ -1,3 +1,7 @@
+'''
+input:
+CDXXI
+'''
 # import re
 
 # def validRomNum(num):
@@ -27,3 +31,7 @@ except:
 # # from roman
 # number = input('> ') # X
 # print(roman.fromRoman(number))
+'''
+output:
+True
+'''
