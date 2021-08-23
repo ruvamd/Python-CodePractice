@@ -1,4 +1,5 @@
 '''
+input:
 2
 9587456281
 1252478965
@@ -12,6 +13,7 @@ for num in numbers:
         print('Yes')
     else: print('No')
 '''
+output:
 YES
 NO
 '''
