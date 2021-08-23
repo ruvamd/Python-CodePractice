@@ -1,5 +1,10 @@
 import re
-
+'''
+input:
+2
+B1CD102354
+B1CDEF2354
+'''
 no_repeats = r"(?!.*(.).*\1)"
 two_or_more_upper = r"(.*[A-Z]){2,}"
 three_or_more_digits = r"(.*\d){3,}"
@@ -11,3 +16,8 @@ for uid in [input() for _ in range(int(input()))]:
         print("Valid")
     else:
         print("Invalid")
+'''
+output:
+Invalid
+Valid
+'''
