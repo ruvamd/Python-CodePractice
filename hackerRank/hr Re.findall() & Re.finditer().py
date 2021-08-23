@@ -1,8 +1,6 @@
 '''
-Task
-given a string S. It consists of alphanumeric characters, spaces and symbols(+,-).
-find all the substrings of S that contains 2 or more vowels.
-Also, these substrings must lie in between  consonants and should contain vowels only.
+input:
+rabcdeefgyYhFjkIoomnpOeorteeeeet
 '''
 import re
 
@@ -20,3 +18,10 @@ v = "aeiou"
 c = "qwrtypsdfghjklzxcvbnm"
 m = re.findall(r"(?<=[%s])([%s]{2,})[%s]" % (c, v, c), input('enter text: ' ), flags = re.I)
 print('\n'.join(m or ['-1']))
+'''
+output:
+ee
+Ioo
+Oeo
+eeeee
+'''
