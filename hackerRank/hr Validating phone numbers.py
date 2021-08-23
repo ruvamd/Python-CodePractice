@@ -1,6 +1,8 @@
-# 9587456281
-# 1252478965
-
+'''
+2
+9587456281
+1252478965
+'''
 import re
 number=int(input())
 numbers = [input() for _ in range(number)]
@@ -9,4 +11,8 @@ for num in numbers:
     if pattern.match(num):
         print('Yes')
     else: print('No')
+'''
+YES
+NO
+'''
 
