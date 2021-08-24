@@ -1,3 +1,13 @@
+'''
+input:
+6
+append 1
+append 2
+append 3
+appendleft 4
+pop
+popleft
+'''
 from collections import deque
 d=deque()
 
@@ -21,3 +31,6 @@ for _ in range(int(input())):
     # elif s[0]=="popleft":
     #     d.popleft()
 print(*d)
+'''
+output: 1 2
+'''
