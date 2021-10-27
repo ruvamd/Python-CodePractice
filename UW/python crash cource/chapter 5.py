@@ -99,15 +99,19 @@
 #     else:print(f'the new user {user} is available') 
 
 #ordinal numbers
-# numb_list=[1,2,3,4,5,6,7,8,9]
-# for n in numb_list:
-#     if 1 in numb_list:
-#         print('1st')
-#     elif 2 in numb_list:
-#         print('2nd')
-#     elif 3 in numb_list:
-#         print('3rd')
-#     else:print(f'{n}th')
+numb_list=[1,2,3,4,5,6,7,8,9]
+# ordinal=lambda n: "%d%s" % (n,"tsnrhtdd"[(n//10%10!=1)*(n%10<4)*n%10::4])
+# print([ordinal(n) for n in numb_list])
+for n in numb_list:
+    if n<10:
+        if n==1:
+            suffics='st'
+        elif n==2:
+            suffics='nd'
+        elif n==3:
+            suffics='rd'
+        else:suffics='th'
+        print(str(n)+suffics)
 
-from num2words import num2words
+
     
