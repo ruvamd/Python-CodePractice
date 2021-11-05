@@ -1,1 +1,10 @@
-[]
+[
+  "test_random_unitest.py::TestSequenceFunctions::test_choice",
+  "test_random_unitest.py::TestSequenceFunctions::test_sample",
+  "test_random_unitest.py::TestSequenceFunctions::test_shuffle",
+  "test/test_random_pytest.py::test_choice",
+  "test/test_random_pytest.py::test_sample",
+  "test/test_random_pytest.py::test_shuffle",
+  "test/test_random_pytest.py::test_shuffle_immutable",
+  "test/test_random_pytest.py::test_sample_too_large"
+]

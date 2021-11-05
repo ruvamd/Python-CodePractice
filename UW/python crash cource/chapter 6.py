@@ -88,3 +88,34 @@
 #         print('t',place)
 
 #favorite number
+# favorite_number={'jen':[1,2],
+#                 'adam':[3,11],
+#                 'kile':[7,12],
+#                 'mur':[4,13],
+#                 'heily':[9,19]}
+# print(favorite_number)
+
+#cities
+cities={'seattle':{'country':'usa',
+                    'population':'350m',
+                    'fact':'best'},
+        'melbourn':{'country':'australia',
+                    'population':'80m',
+                    'fact':'hot'},
+        'tokyo':{'country':'japan',
+                'population':'140m',
+                'fact':'best of the best'}
+}
+for city,info_cities in cities.items():
+    print('\n',city)
+    
+    country=f"the country is {info_cities['country']}"
+    population=f"the population is {info_cities['population']}"
+    fact=f"the fact is {info_cities['fact']}"
+    
+    print('\t',country)
+    print('\t',population)
+    print('\t',fact)
+    if info_cities['population']=='80m' in info_cities['population']:
+            info_cities['population']='100m'
+            print(f'\t the population is rised by 20m')
