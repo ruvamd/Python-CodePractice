@@ -11,3 +11,5 @@ restaurant_n_two=Restaurant('burger king','impossible')
 restaurant_n_three=Restaurant('mcdonald','big mac')
 
 restaurant.describe_restaurant()
+restaurant_n_two.describe_restaurant()
+restaurant_n_three.describe_restaurant()
