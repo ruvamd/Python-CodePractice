@@ -6,11 +6,8 @@ class Restaurant:
     def describe_restaurant(self):
         print(f'the restaurant name is {self.restaurant_name} and cuisine type is {self.cuisine_type}')
 
-    def open_restaurant(self):
-        print(f'the restaurant {self.restaurant_name} is open')
-
 restaurant=Restaurant('la placinte','moldavian')
-print(f'the restaurant name is {restaurant.restaurant_name} and cuisine type is {restaurant.cuisine_type}\n')
+restaurant_n_two=Restaurant('burger king','impossible')
+restaurant_n_three=Restaurant('mcdonald','big mac')
 
 restaurant.describe_restaurant()
-restaurant.open_restaurant()
