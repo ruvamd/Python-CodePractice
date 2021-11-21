@@ -58,7 +58,6 @@ def make_random_ticket(possibilities):
 
     return ticket
 
-
 possibilities = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 'a', 'b', 'c', 'd', 'e']
 winning_ticket = get_winning_ticket(possibilities)
 
