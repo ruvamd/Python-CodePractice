@@ -11,3 +11,16 @@ class Die:
 
 ran_num=Die()
 ran_num.roll_die()
+
+#output
+6
+18
+10
+11
+11
+16
+1
+5
+8
+12
+13
