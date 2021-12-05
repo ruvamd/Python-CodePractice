@@ -21,13 +21,24 @@ from datetime import datetime as dts
 
 date_format='^\d{2}/\d{2}/\d{4}$'
 data=[]
-air_kg_cost=10 
-air_cubic_cost=20 #per cubic meter
-truck_flat_cost=25
-truck_urgent_cost=45
-ocean_flat_cost=30
+
+weight_restricted=10
 heavy_package=9
 large_package=124
+
+air_cubic_cost=20 #per cubic meter
+
+def air_kg_cost(num):
+    return num*10
+
+def ocean_flat_cost(num):
+    return num*30
+
+def truck_flat_cost(num):
+    if 'urgent' in data:
+        return num*45
+    if 'not urgent' in data:    
+        return num*25
 
 def menu():
     menu_description=(['Hi.This information will be gathered:','-name','-package description','-content dangerous','-weight','-volume','-delivery date','-destination'])
@@ -81,21 +92,42 @@ def package_description():
     pack_descr=input('enter the package description:')
     data.append(pack_descr)
 
-def check_urgent():
-     
+def urgent():
+    if 'urgent' in data:
+        return 'urgent'
+    elif 'not urgent' in data:
+        return 'not urgent'
 
 def weight():
-    weight_restricted=10  
+     
     while True:
         try:
             enter_weight=int(input('enter the package weight(kg):'))
-            if enter_weight==heavy_package:
-                print('The package is heavy.Will be routed via truck or ocean.')
+            #not urgent,heavy
+            if enter_weight==heavy_package and urgent()=='not urgent':
+                print('The package is heavy.It will be routed via truck or ocean.')
+                data.append(enter_weight)
                 data.append('heavy') 
+                data.append(truck_flat_cost(enter_weight))
+            #urgent,heavy
+            elif enter_weight==heavy_package and urgent()=='urgent':
+                print('The package is urgent and heavy.It will be routed via truck.The rate via truck $45.')
+                data.append(enter_weight)
+                data.append('heavy') 
+                data.append(truck_flat_cost(enter_weight))
+            #urgent,not heavy
+            elif enter_weight in range(weight_restricted) and urgent()=='urgent':
+                data.append(enter_weight) 
+                data.append('not heavy')
+                data.append(air_kg_cost(enter_weight))
+            #not heavy,not urgent
             elif enter_weight<weight_restricted and enter_weight>0:
-                data.append(enter_weight)       
+                data.append(enter_weight) 
+                data.append('not heavy')   
+                data.append(truck_flat_cost(enter_weight)) #calculates the cost 
+            #restriction: above 10kg limit
             else:
-                print('to be shipped,the weight should be less then 10 kg')
+                print('cannot be shipped,the weight should be less then 10 kg')
                 re_ask=input('Do you want to enter another package?(y/n):')
                 if 'y' in re_ask:
                     continue
@@ -111,11 +143,16 @@ def volume():
     while True:    
         try:
             enter_volume=int(input('enter the package volume(exp:5x5x5=125 cubic meters):'))
-            if enter_volume==large_package:
+            if enter_volume==large_package and urgent()=='not urgent':
                 print('The package is large.It will be delivered by truck or ocean(for international)')
+                data.append(enter_volume)
                 data.append('large')
+                data.append(ocean_flat_cost(enter_volume))
+
             elif enter_volume<size_restricted and enter_volume>0:
                 data.append(enter_volume)
+                data.append('not large')
+                data.append(truck_flat_cost(enter_volume))
             else:
                 print('the volume should be smaller then 5x5x5 meters (125 cubic meters)')
                 re_ask=input('Do you want to enter another package volume?(y/n):')
@@ -175,16 +212,17 @@ def record():
         # first_last_name()
         # package_description()
         # danger()
-        # if weight()!='n':
-        #     pass
-        # else:
-        #     break  
-        if volume()!='n':
+        delivery_date()
+        # urgent()
+        # international()
+        if weight()!='n':
             pass
         else:
-            break
-        # delivery_date()
-        # international()
+            break  
+        # if volume()!='n':
+        #     pass
+        # else:
+        #     break
         
         write_to_csv()
         load_from_csv()
