@@ -32,13 +32,13 @@ def air_kg_cost(num):
     return num*10
 
 def ocean_flat_cost(num):
-    return num*30
+    return 30
 
 def truck_flat_cost(num):
     if 'urgent' in data:
-        return num*45
+        return 45
     if 'not urgent' in data:    
-        return num*25
+        return 25
 
 def menu():
     menu_description=(['Hi.This information will be gathered:','-name','-package description','-content dangerous','-weight','-volume','-delivery date','-destination'])
@@ -76,18 +76,12 @@ def danger():
         break
 
 def international():
-    while True:
-        ask_international=input('international destination?(y/n):')
-        if 'y' in ask_international:
-            data.append(f'{ask_international}')
-        elif 'n' in ask_international:
-            data.append(f'{ask_international}')
-            break
-        else:
-            print('enter y or n only')
-            continue
-        break
-
+    ask_int_local=input('Does the package for international?(y/n):')
+    if 'y' in ask_int_local:
+        data.append('international')
+    elif 'n' in ask_int_local:
+        data.append('local')
+        
 def package_description():
     pack_descr=input('enter the package description:')
     data.append(pack_descr)
@@ -144,11 +138,15 @@ def volume():
         try:
             enter_volume=int(input('enter the package volume(exp:5x5x5=125 cubic meters):'))
             if enter_volume==large_package and urgent()=='not urgent':
-                print('The package is large.It will be delivered by truck or ocean(for international)')
-                data.append(enter_volume)
-                data.append('large')
-                data.append(ocean_flat_cost(enter_volume))
-
+                print('The package is large and not urgent.It will be delivered by truck or ocean(for international)')
+                if 'international' in data:
+                    data.append(enter_volume)
+                    data.append('large')
+                    data.append(ocean_flat_cost(enter_volume))     
+                elif 'local' in data:
+                    data.append(enter_volume)
+                    data.append('large')
+                    data.append(truck_flat_cost(enter_volume))
             elif enter_volume<size_restricted and enter_volume>0:
                 data.append(enter_volume)
                 data.append('not large')
@@ -193,7 +191,7 @@ def delivery_date():
         break
 
 def write_to_csv():
-    with open('src/assignment07/booking_system/src/booking_system/booking_quotes.csv','w') as store_bq:
+    with open('src/assignment07/booking_system/src/booking_system/booking_quotes.csv','a') as store_bq:
         format_bq_csv=','.join(map(str,data))
         store_bq.writelines(format_bq_csv)
         
@@ -206,23 +204,23 @@ def load_from_csv():
 def record():
     id=0
     while True:
-        # menu()
+        menu()
         id+=1
         data.append(f'\n{id}') #fix new line
-        # first_last_name()
-        # package_description()
-        # danger()
+        first_last_name()
+        package_description()
+        danger()
         delivery_date()
-        # urgent()
-        # international()
+        international()
+        urgent()
         if weight()!='n':
             pass
         else:
             break  
-        # if volume()!='n':
-        #     pass
-        # else:
-        #     break
+        if volume()!='n':
+            pass
+        else:
+            break
         
         write_to_csv()
         load_from_csv()
