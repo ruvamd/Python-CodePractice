@@ -24,4 +24,5 @@ class Random_walks:
 
             self.x_val.append(x)
             self.y_val.append(y)
+
             

@@ -11,3 +11,4 @@ fig,ax=plt.subplots()
 ax.scatter(x,w,c=w,cmap=plt.cm.Blues,s=10)
 ax.plot(w)
 plt.show()
+
