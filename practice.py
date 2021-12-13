@@ -1,6 +1,4 @@
-import re
-pattern='ab'
-string='abcd'
-match = re.search(pattern, string)
-if match:
-    process(match)
+def fun(a,b,c):
+    return a,b,c
+
+print(fun())
