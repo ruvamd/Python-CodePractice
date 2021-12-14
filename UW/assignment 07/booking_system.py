@@ -193,20 +193,20 @@ def delivery_date():
 
 # write header to csv
 def write_header_csv():
-    with open('src/assignment07/booking_system/src/booking_system/booking_quotes.csv','w') as store_bq:
+    with open('UW/assignment 07/booking_quotes.csv','w') as store_bq:
         header=['id','first name','last name','package description','danger','delivery date','international','weight','price','volume','final price']  
         h=','.join(header)
         store_bq.write(f'{h}\n')
 
 # body to csv
 def write_body_csv():
-    with open('src/assignment07/booking_system/src/booking_system/booking_quotes.csv','a') as store_bq:
+    with open('UW/assignment 07/booking_quotes.csv','a') as store_bq:
         format_bq_csv=','.join(map(str,data))
         store_bq.writelines(format_bq_csv)
 
 # load from csv
 def load_from_csv():
-    with open('src/assignment07/booking_system/src/booking_system/booking_quotes.csv') as load_bq:
+    with open('UW/assignment 07/booking_quotes.csv') as load_bq:
         read_stored_bq=csv.reader(load_bq)
         for i in read_stored_bq:
             print(i)
