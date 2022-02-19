@@ -1,4 +1,2 @@
-def fun(a,b,c):
-    return a,b,c
-
-print(fun())
+l=lambda x:x*2
+print(l(2))
