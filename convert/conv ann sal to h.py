@@ -1,4 +1,9 @@
-#condition of work: 12 month,four weeks,five days a week and eight hours a day 
+'''condition of work: 12 month,
+                      four weeks,
+                      five days a week, 
+                      eight hours a day. 
+'''
+
 yearSal=int(input('Enter the year salary: '))
 def convYearToHourSal():
     return round(yearSal/12/4/5/8,2)
