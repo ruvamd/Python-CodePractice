@@ -1,0 +1,13 @@
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): ok.ru:443
+DEBUG:urllib3.connectionpool:https://ok.ru:443 "GET /vadim.rusu/album/872712266960 HTTP/1.1" 200 None
+WARNING:root:<Response [200]>
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): ok.ru:443
+DEBUG:urllib3.connectionpool:https://ok.ru:443 "GET /vadim.rusu/album/872712266960 HTTP/1.1" 200 None
+WARNING:root:<Response [200]>
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): ok.ru:443
+DEBUG:urllib3.connectionpool:https://ok.ru:443 "GET /vadim.rusu/album/872712266960 HTTP/1.1" 200 None
+INFO:root:<Response [200]>
+INFO:root:<Response [200]>
+DEBUG:Starting new HTTPS connection (1): ok.ru:443
+DEBUG:https://ok.ru:443 "GET /vadim.rusu/album/872712266960 HTTP/1.1" 200 None
+INFO:<Response [200]>
