@@ -28,7 +28,7 @@ def connection(url='http://www.google.com/', timeout=5):
         print("No internet connection available.")
     return False
 
-#Function to download an instagram photo or video
+#Function to download an ok photo or video
 def download_image_video():
 
     url = input("Please enter image URL: ")
@@ -92,13 +92,13 @@ def download_image_video():
 def pp_download():
     
     url = input("Please enter the URL of the profile: ")
-    x = re.match(r'^(https:)[/][/]www.([^/]+[.])*instagram.com', url)
+    x = re.match(r'^(https:)[/][/]www.([^/]+[.])*ok.ru', url)
     
     if x:
-        check_url1 = re.match(r'^(https:)[/][/]www.([^/]+[.])*instagram.com[/].*\?hl=[a-z-]{2,5}', url)
-        check_url2 = re.match(r'^(https:)[/][/]www.([^/]+[.])*instagram.com$|^(https:)[/][/]www.([^/]+[.])*instagram.com/$', url)
-        check_url3 = re.match(r'^(https:)[/][/]www.([^/]+[.])*instagram.com[/][a-zA-Z0-9_]{1,}$', url)
-        check_url4 = re.match(r'^(https:)[/][/]www.([^/]+[.])*instagram.com[/][a-zA-Z0-9_]{1,}[/]$', url)
+        check_url1 = re.match(r'^(https:)[/][/]www.([^/]+[.])*ok.ru[/].*\?hl=[a-z-]{2,5}', url)
+        check_url2 = re.match(r'^(https:)[/][/]www.([^/]+[.])*ok.ru$|^(https:)[/][/]www.([^/]+[.])*ok.ru/$', url)
+        check_url3 = re.match(r'^(https:)[/][/]www.([^/]+[.])*ok.ru[/][a-zA-Z0-9_]{1,}$', url)
+        check_url4 = re.match(r'^(https:)[/][/]www.([^/]+[.])*ok.ru[/][a-zA-Z0-9_]{1,}[/]$', url)
 
         if check_url3:
             final_url = url + '/?__a=1'
@@ -143,7 +143,7 @@ def pp_download():
 if connection() == True:
     try:
         while True:
-            a = "Press 'A' to download an instagram profile picture.\nPress 'B' to download an instagram photo or video.\nPress 'Q' to exit."
+            a = "Press 'A' to download an ok profile picture.\nPress 'B' to download an ok photo or video.\nPress 'Q' to exit."
             print(a)
             select = str(input("\nInstaSave > ")).upper()
             try:
