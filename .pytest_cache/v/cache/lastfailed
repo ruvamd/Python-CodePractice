@@ -3,6 +3,8 @@
   "pytest/test_alt_fail.py": true,
   "pytest/test_card.py": true,
   "pytest/test_card_fail.py": true,
+  "pytest/test_count.py": true,
   "pytest/test_experiment.py": true,
-  "pytest/test_helper.py": true
+  "pytest/test_helper.py": true,
+  "pytest/test_mod_scope.py": true
 }
