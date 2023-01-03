@@ -1,9 +1,6 @@
-class Solution:
-    def isPalindrome(self, x: int) -> bool:
-        if x < 0:
-            return False
-        else:
-            return x == x[::-1]
+list1 = [1, 5, 6, 9, 11]
+list2 = [3, 4, 7, 8, 10]
 
-x=121
-print(Solution().isPalindrome(x))
+res=sorted(list1+list2)
+
+print(res)
