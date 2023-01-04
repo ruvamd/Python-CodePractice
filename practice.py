@@ -1,6 +1,12 @@
-list1 = [1, 5, 6, 9, 11]
-list2 = [3, 4, 7, 8, 10]
+def remove_Dublicates(nums):
+    if not nums:
+        return 0
+    i=0
+    for j in range(1,len(nums)):
+        if nums[j]!=nums[i]:
+            i+=1
+            nums[i]=nums[j]
+    return i+1
 
-res=sorted(list1+list2)
-
-print(res)
+nums=[1,1,2]
+print(remove_Dublicates(nums))

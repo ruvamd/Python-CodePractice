@@ -9,5 +9,5 @@ class Solution:
                     nums[i] = nums[j]
             return i + 1
 
-s = [1,1,2]
-print(Solution().removeDuplicates(s))
+nums = [1,1,2]
+print(Solution().removeDuplicates(nums))
