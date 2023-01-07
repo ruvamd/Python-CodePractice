@@ -1,7 +1,8 @@
 UW/ass7/activity07
 scraping/
 pytest/
-
+.pytest_cache/v/cache
+__pycache__
 
 pyvenv.cfg
 admin.py
