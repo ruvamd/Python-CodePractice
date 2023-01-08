@@ -1,12 +1,8 @@
-def remove_Dublicates(nums):
-    if not nums:
-        return 0
-    i=0
-    for j in range(1,len(nums)):
-        if nums[j]!=nums[i]:
-            i+=1
-            nums[i]=nums[j]
-    return i+1
+from math import sqrt,floor
 
-nums=[1,1,2]
-print(remove_Dublicates(nums))
+def mySqrt(x):
+    x=sqrt(x)
+    return floor(x)
+
+x=8
+print(mySqrt(x))
