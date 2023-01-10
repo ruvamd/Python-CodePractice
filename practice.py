@@ -1,19 +1,20 @@
-class tree_node:
+class Tree_node:
     def __init__(self,val=0,left=None,right=None):
         self.val=val
         self.left=left
         self.right=right
 
 class Solution:
-    def max_depth(self,root):
-        if root is None:
-            return 0
-        return 1+max(self.max_depth(root.left),self.max_depth(root.right))
-
+    def sorted_array_to_bst(self,nums):
+        if not nums:
+            return None
+        mid=len(nums)//2
+        root=Tree_node(nums[mid])
+        root.left=self.sorted_array_to_bst(nums[:mid])
+        root.right=self.sorted_array_to_bst(nums[mid+1:])
+        return root
+    
 if __name__=="__main__":
-    root=tree_node(3)
-    root.left=tree_node(9)
-    root.right=tree_node(20)
-    root.right.left=tree_node(15)
-    root.right.right=tree_node(7)
-    print(Solution().max_depth(root))
+    nums=[-10,-3,0,5,9]
+    print(Solution().sorted_array_to_bst(nums))
+
