@@ -5,26 +5,15 @@ class tree_node:
         self.right=right
 
 class Solution:
-    def is_symmetric(self,root):
+    def max_depth(self,root):
         if root is None:
-            return True
-        return self.is_mirror(root.left,root.right)
-
-    def is_mirror(self,left,right):
-        if left is None and right is None:
-            return True
-        if left is None or right is None:
-            return False
-        return left.val==right.val and self.is_mirror(left.left,right.right) and self.is_mirror(left.right,right.left) 
+            return 0
+        return 1+max(self.max_depth(root.left),self.max_depth(root.right))
 
 if __name__=="__main__":
-    root=tree_node(1)
-    root.right=tree_node(2)
-    root.left=tree_node(2)
-    root.left.left=tree_node(3)
-    root.left.right=tree_node(4)
-    root.right.left=tree_node(4)
-    root.right.right=tree_node(3)
-    print(Solution().is_symmetric(root))
-
-
+    root=tree_node(3)
+    root.left=tree_node(9)
+    root.right=tree_node(20)
+    root.right.left=tree_node(15)
+    root.right.right=tree_node(7)
+    print(Solution().max_depth(root))
