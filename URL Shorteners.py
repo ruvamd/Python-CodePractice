@@ -13,5 +13,3 @@ def to_base_62(number):
 
 print(to_base_10("LpuPe81bc2w"))
 print(to_base_62(18327995462734721974))
-
-
