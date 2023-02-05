@@ -12,5 +12,5 @@ class Solution:
             b = c
         return c
 
-n=3
+n=4
 print(Solution().climbStairs(n))
