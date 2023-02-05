@@ -4,6 +4,8 @@ pytest/
 .pytest_cache/v/cache
 __pycache__
 
+
+
 pyvenv.cfg
 admin.py
 settings.py
