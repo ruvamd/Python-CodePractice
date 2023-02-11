@@ -1,17 +1,44 @@
-base_62 = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
+def SayHiNTimes(n):
+    x = 0
+    while x < n:
+        x += 1
+        print("hi")
+        
+SayHiNTimes(5)
 
-def to_base_10(videoId):
-    return sum([base_62.index(char) * (62 ** index) for index, char in enumerate(videoId[::-1])])
+def Sort(numbers):
+    for x in range(len(numbers)):
+        for y in range(len(numbers)):
+            if numbers[x] < numbers[y]:
+                temp = numbers[x]
+                numbers[x] = numbers[y]
+                numbers[y] = temp
 
-def to_base_62(number):
-    base_10 = number
-    base_62_string = ""
-    while base_10 > 0:
-        base_62_string = base_62[base_10 % 62] + base_62_string
-        base_10 = base_10 // 62
-    return base_62_string
+def Display(myList):
+  for num in myList:
+   print(num)
 
-print(to_base_10("LpuPe81bc2w"))
-print(to_base_62(18327995462734721974))
+num_list = [5, 1, 8, 2]
 
+Display(num_list)
 
+Sort(num_list)
+
+Display(num_list)
+
+def PrintFirstItemThenFirstHalfThenSayHi100Times(int_list):
+  print(int_list[0])
+
+  middleIndex = len(int_list)/2
+  index = 0
+
+  while index < middleIndex:
+      print(int_list[index])
+      index += 1
+
+  x = 0
+  while x < 100:
+      x += 1
+      print("hi")
+      
+PrintFirstItemThenFirstHalfThenSayHi100Times(num_list)
