@@ -1,21 +1,32 @@
-from lib2to3.pytree import Node
+class Node:
+    def __init__(self, val, next=None):
+        self.val = val
+        self.next = next
 
-
-def reverse(x: Node) -> Node:
+def reverse(x):
     prev = None
-    current = x
-    while current:
-        next_node = current.next
-        current.next = prev
-        prev = current
-        current = next_node
+    curr = x
+    while curr:
+        next_node = curr.next
+        curr.next = prev
+        prev = curr
+        curr = next_node
     return prev
 
-def print_linked_list(head: Node):
-    current = head
-    while current:
-        print(current.data)
-        current = current.next
-x=
-head = reverse()
-print_linked_list(head)
+# Create linked list 1 -> 2 -> 3
+head = Node(1, Node(2, Node(3)))
+
+# Reverse the linked list
+reversed_head = reverse(head)
+
+# Print the reversed linked list
+curr = reversed_head
+while curr:
+    if curr.next:
+        print(curr.val, end=' -> ')
+    else:
+        print(curr.val)
+    curr = curr.next
+
+# Output:
+# 3 -> 2 -> 1
