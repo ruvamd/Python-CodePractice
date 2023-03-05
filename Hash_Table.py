@@ -159,6 +159,7 @@ class LinkedList:
         return
       current = current.pointer
 
+print('\n#---------------output for ChainingHashTable------------------#\n')
 hash_table = ChainingHashTable()
 
 # add some key-value pairs
@@ -187,3 +188,62 @@ print(hash_table.lookup('orange'))  # Output: None
 print(hash_table.lookup('grape'))  # Output: 3
 print(hash_table.lookup('peach'))  # Output: 1
 
+print('\n#-----------------output for ProbingHashTable----------------#\n')
+
+hash_table = ProbingHashTable()
+
+# add some key-value pairs
+hash_table.add('apple', 5)
+hash_table.add('banana', 7)
+hash_table.add('orange', 2)
+hash_table.add('grape', 3)
+hash_table.add('peach', 1)
+
+# look up some keys
+print(hash_table.lookup('apple'))  # Output: 5
+print(hash_table.lookup('banana'))  # Output: 7
+print(hash_table.lookup('orange'))  # Output: 2
+print(hash_table.lookup('grape'))  # Output: 3
+print(hash_table.lookup('peach'))  # Output: 1
+print(hash_table.lookup('pear'))  # Output: None
+
+# delete some keys
+hash_table.delete('banana')
+hash_table.delete('orange')
+
+# look up the remaining keys
+print(hash_table.lookup('apple'))  # Output: 5
+print(hash_table.lookup('banana'))  # Output: None
+print(hash_table.lookup('orange'))  # Output: None
+print(hash_table.lookup('grape'))  # Output: 3
+print(hash_table.lookup('peach'))  # Output: 1
+
+print('\n#---------------output for linked_list------------------#\n')
+
+linked_list = LinkedList()
+
+# add some key-value pairs
+linked_list.add('apple', 5)
+linked_list.add('banana', 7)
+linked_list.add('orange', 2)
+linked_list.add('grape', 3)
+linked_list.add('peach', 1)
+
+# look up some keys
+print(linked_list.lookup('apple'))  # Output: 5
+print(linked_list.lookup('banana'))  # Output: 7
+print(linked_list.lookup('orange'))  # Output: 2
+print(linked_list.lookup('grape'))  # Output: 3
+print(linked_list.lookup('peach'))  # Output: 1
+print(linked_list.lookup('pear'))  # Output: None
+
+# delete some keys
+linked_list.delete('banana')
+linked_list.delete('orange')
+
+# look up the remaining keys
+print(linked_list.lookup('apple'))  # Output: 5
+print(linked_list.lookup('banana'))  # Output: None
+print(linked_list.lookup('orange'))  # Output: None
+print(linked_list.lookup('grape'))  # Output: 3
+print(linked_list.lookup('peach'))  # Output: 1
