@@ -1,3 +1,5 @@
+#lab from lesson 7
+
 def create_graph_1():
     graph = {'a': ['b', 'c'], 
              'b': ['d', 'e'], 
