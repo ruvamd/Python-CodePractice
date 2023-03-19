@@ -1,3 +1,5 @@
+#first requirement
+
 # Define graph
 graph = {'Queen Anne': {'Capitol Hill': 5},
          'Capitol Hill': {'Queen Anne': 5, 'Fremont': 6},
