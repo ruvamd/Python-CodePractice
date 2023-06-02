@@ -1,0 +1,39 @@
+'''
+A variation of the coin change problem:
+Find total number of ways the given coins can be used to add up to a given amount.
+write a method matching this interface:
+from typing import List
+def num_ways_for_change(n: int, coins: List[int]) -> int:
+
+* The method will be given coins of the following denominations [ 1, 5, 10, 25 ]
+* The coins can be reused.
+* Sum should be exactly equal to the amount N.
+
+Example 1:
+* Input: N = 12
+* Answer = 4
+* Option1: 1cent * 12
+* Option2: 5cents * 1 + 1cent * 7
+* Option3: 5cents * 2 + 1cent * 2
+* Option4: 10cents * 1 + 1cent * 2
+Example 2:
+* Input: N = 6
+* Answer = 2
+* Option1: 1cent * 6
+* Option2: 5cents * 1 + 1cent * 1
+'''
+
+from typing import List
+
+def num_ways_for_change(n: int, coins: List[int]) -> int:
+    dp = [0] * (n + 1)
+    dp[0] = 1
+
+    for coin in coins:
+        for i in range(coin, n + 1):
+            dp[i] += dp[i - coin]
+
+    return dp[n]
+
+print(num_ways_for_change(12, [1, 5, 10, 25]))  # Output: 4
+print(num_ways_for_change(6, [1, 5, 10, 25]))   # Output: 2
