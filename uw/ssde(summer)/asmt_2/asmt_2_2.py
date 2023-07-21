@@ -111,3 +111,9 @@ if __name__ == "__main__":
     access_path(file_system, "/subdir1/file3.txt", user2)  # Output: You don't have permission to read this file.
     access_path(file_system, "/file2.txt", user2)  # Output: Content of file2.txt: This is the content of file 2
     access_path(file_system, "/non_existent_file.txt", user2)  # Output: non_existent_file.txt not found.
+
+'''
+-The FileSystemElement class is used to encapsulate common properties and methods of both files and directories.
+-The File and Directory classes inherit from FileSystemElement, enabling code reuse and extension of behavior.
+-The access method in File and Directory classes demonstrates polymorphism, as it takes different forms based on the object type (file or directory) and the user's permissions.
+'''

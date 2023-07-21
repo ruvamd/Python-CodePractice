@@ -99,4 +99,7 @@ if __name__ == "__main__":
     access_path(file_system, "/file2.txt", user2)  # Output: Content of file2.txt: This is the content of file 2
     access_path(file_system, "/non_existent_file.txt", user2)  # Output: non_existent_file.txt not found.
 
-
+'''
+-Introduced Group class, and users can now be added to specific groups. 
+-The access_path function now takes a user argument, allowing to check the user's permissions and group membership when accessing files.
+'''
