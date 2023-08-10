@@ -8,6 +8,14 @@ Include a short README to instruct how to install this application on machines.
 
 Rubric:
 Functioning application
+
+This application should be able to receive a request from a user and respond back with a handle to 
+the "root" directory.
+
+Following use cases:
+a) User Management : Ability to handle multiple users
+b) Ability to create/update/delete directories and files
+c) Persistence of directories/files into a database or the local file system
 '''
 
 class Permissions:
