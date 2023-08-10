@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>File System</title>
+</head>
+<body>
+    <h1>Welcome to the File System</h1>
+
+    {% if file_system.logged_in_user %}
+        <p>Logged in as: {{ file_system.logged_in_user.name }}</p>
+    {% else %}
+        <p>Please login to access the file system.</p>
+    {% endif %}
+
+    <h2>Create Directory</h2>
+    <form action="{{ url_for('create_directory') }}" method="post">
+        <label for="path">Path to Parent Directory:</label>
+        <input type="text" id="path" name="path" required>
+        <br>
+        <label for="directory_name">New Directory Name:</label>
+        <input type="text" id="directory_name" name="directory_name" required>
+        <br>
+        <input type="submit" value="Create Directory">
+    </form>
+
+    <h2>Update Directory</h2>
+    <form action="{{ url_for('update_directory') }}" method="post">
+        <label for="path_update">Path to Directory:</label>
+        <input type="text" id="path_update" name="path_update" required>
+        <br>
+        <label for="new_directory_name">New Directory Name:</label>
+        <input type="text" id="new_directory_name" name="new_directory_name" required>
+        <br>
+        <input type="submit" value="Update Directory">
+    </form>
+
+    <h2>Delete Directory</h2>
+    <form action="{{ url_for('delete_directory') }}" method="post">
+        <label for="path_delete">Path to Directory:</label>
+        <input type="text" id="path_delete" name="path_delete" required>
+        <br>
+        <input type="submit" value="Delete Directory">
+    </form>
+
+    <h2>Create File</h2>
+    <form action="{{ url_for('create_file') }}" method="post">
+        <label for="path_file">Path to Parent Directory:</label>
+        <input type="text" id="path_file" name="path_file" required>
+        <br>
+        <label for="file_name">New File Name:</label>
+        <input type="text" id="file_name" name="file_name" required>
+        <br>
+        <label for="content">File Content:</label>
+        <textarea id="content" name="content" required></textarea>
+        <br>
+        <input type="submit" value="Create File">
+    </form>
+
+    <h2>Update File Content</h2>
+    <form action="{{ url_for('update_file') }}" method="post">
+        <label for="path_file_update">Path to File:</label>
+        <input type="text" id="path_file_update" name="path_file_update" required>
+        <br>
+        <label for="new_content">New Content:</label>
+        <textarea id="new_content" name="new_content" required></textarea>
+        <br>
+        <input type="submit" value="Update File">
+    </form>
+
+    <h2>Delete File</h2>
+    <form action="{{ url_for('delete_file') }}" method="post">
+        <label for="path_file_delete">Path to File:</label>
+        <input type="text" id="path_file_delete" name="path_file_delete" required>
+        <br>
+        <input type="submit" value="Delete File">
+    </form>
+
+</body>
+</html>
