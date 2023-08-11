@@ -1,3 +1,7 @@
+from directory import Directory
+from user import User
+from group import Group
+
 class FileSystem:
     def __init__(self):
         self.root_directory = Directory("/")
@@ -6,15 +10,19 @@ class FileSystem:
     def login_user(self, user):
         self.logged_in_user = user
 
-    @app.route("/create_directory", methods=["POST"])
-    def create_directory():
-        if file_system.logged_in_user:
-            path = request.form["path"]
-            directory_name = request.form["directory_name"]
-            file_system.create_directory(path, directory_name)
-            return redirect(url_for("home"))
-        else:
-            return "Please login to create a directory."
+    def create_directory(self, path, directory_name):
+        if not self.logged_in_user:
+            print("Please login to the file system before creating a directory.")
+            return
+
+        # Check if the user has the necessary permissions to create a directory
+        if not self._has_write_permission(path):
+            print("You don't have permission to create a directory at the specified path.")
+            return
+
+        # Create the new directory and add it to the file system
+        directory = Directory(directory_name)
+        self._add_to_path(path, directory)
 
     def list_directory(self, path):
         if not self.logged_in_user:
@@ -119,8 +127,6 @@ class FileSystem:
         current_element = self.root_directory
         elements = path.strip("/").split("/")
         for element in elements:
-            if not element:
-                continue  # Skip empty elements
             if element in current_element.sub_directories:
                 current_element = current_element.sub_directories[element]
             else:
@@ -128,8 +134,6 @@ class FileSystem:
                 return
 
         current_element.sub_directories[directory.name] = directory
-
-
 
     def _get_directory(self, path):
         current_element = self.root_directory
@@ -146,17 +150,3 @@ class FileSystem:
         # Logic to get permissions for an element (file or directory)
         # can use the element's owner and group attributes along with the logged-in user to determine permissions
         return f"Read: {element.group.permissions.read}, Write: {element.group.permissions.write}, Execute: {element.group.permissions.execute}"
-
-# Before attempting to access a directory or file, print the constructed path
-def access_path(root_directory, path, user):
-    current_element = root_directory
-    elements = path.strip("/").split("/")
-    print(f"Accessing path: {path}")  # Add this line
-    for element in elements:
-        if element in current_element.sub_directories:
-            current_element = current_element.sub_directories[element]
-        elif element in current_element.files:
-            file = current_element.files[element]
-            file.access(user)
-        else:
-            print(f"{element} not found.")

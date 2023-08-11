@@ -17,286 +17,35 @@ a) User Management : Ability to handle multiple users
 b) Ability to create/update/delete directories and files
 c) Persistence of directories/files into a database or the local file system
 '''
-import sqlite3
-import os
-from flask import Flask, render_template, request, redirect, url_for
+#from asmt_3 
+'''
+Refactor (add classess/method signatures) the code submitted in the previous 
+assignment to include the following functionality.
 
-app = Flask(__name__)
+1) Users to login/start FileSystem
+2) Users to create new directories and store them
+3) Users to list/read existing directories (with permissions)
+4) Users to create new files in directories and store them
+5) Users to list existing files (with permissions)
+6) Users to set/edit permissions on files and directories
 
-# Get the current working directory (CWD)
-cwd = os.getcwd()
-      
-# Print the current working directory (CWD)
-print("Current working directory:", cwd)
+Rubric:
+1. User Interface/API classes/methods
+2. Persistance classes/methods
+3. Judicious use of SOLID principles 
+'''
 
-# Get the list of all files and directories
-# in current working directory
-dir_list = os.listdir(cwd)
-  
-print("Files and directories in 'cwd':")
-for index, item in enumerate(dir_list):
-    # Add space above first item
-    if index == 0:
-        print()
-    print(item)
-    
-# Add space after last item
-print()
+from file_system_package.file_system_element import FileSystemElement
+from file_system_package.file import File
+from file_system_package.directory import Directory
+from file_system_package.user import User
+from file_system_package.group import Group
+from file_system_package.permissions import Permissions
+from file_system_package.file_system import FileSystem
 
-
-# Create a connection to the SQLite database
-conn = sqlite3.connect('file_system.db')
-cursor = conn.cursor()
-
-# Create tables for directories and files
-cursor.execute('''
-    CREATE TABLE IF NOT EXISTS directories (
-        id INTEGER PRIMARY KEY,
-        name TEXT,
-        parent_id INTEGER,
-        owner TEXT,
-        group_name TEXT
-    )
-''')
-
-cursor.execute('''
-    CREATE TABLE IF NOT EXISTS files (
-        id INTEGER PRIMARY KEY,
-        name TEXT,
-        content TEXT,
-        directory_id INTEGER,
-        owner TEXT,
-        group_name TEXT
-    )
-''')
-
-# Commit changes and close the database connection
-conn.commit()
-conn.close()
-
-class Permissions:
-    _instance = None
-
-    def __new__(cls, read=False, write=False, execute=False):
-        if cls._instance is None:
-            cls._instance = super().__new__(cls)
-            cls._instance.read = read
-            cls._instance.write = write
-            cls._instance.execute = execute
-        return cls._instance
-
-    def update_permissions(self, read=False, write=False, execute=False):
-        self.read = read
-        self.write = write
-        self.execute = execute
-
-class User:
-    def __init__(self, name):
-        self.name = name
-        self.groups = set()
-
-    def add_to_group(self, group):
-        self.groups.add(group)
-
-class Group:
-    def __init__(self, name):
-        self.name = name
-        self.permissions = Permissions()
-
-class FileSystemElement:
-    def __init__(self, name, owner, group):
-        self.name = name
-        self.owner = owner
-        self.group = group
-
-    def access(self, user):
-        pass
-
-class File(FileSystemElement):
-    def __init__(self, name, content, owner, group):
-        super().__init__(name, owner, group)
-        self.content = content
-
-    def access(self, user):
-        if self.owner.name == user.name or self.group.name in user.groups or self.group.permissions.read:
-            print(f"Content of {self.name}: {self.content}")
-        else:
-            print("You don't have permission to read this file.")
-
-class Directory(FileSystemElement):
-    def __init__(self, name, parent=None):
-        super().__init__(name, None, None)  # Directories have no owner or group
-        self.parent = parent
-        self.sub_directories = {}
-        self.files = {}
-
-    def add_directory(self, directory_name):
-        new_directory = Directory(directory_name, self)
-        self.sub_directories[directory_name] = new_directory
-        return new_directory
-
-    def add_file(self, file_name, content, owner, group):
-        new_file = File(file_name, content, owner, group)
-        self.files[file_name] = new_file
-        return new_file
-
-    def access(self, user):
-        print(f"Accessing directory: {self.name}")
-
-class FileSystem:
-    def __init__(self):
-        self.root_directory = Directory("/")
-        self.logged_in_user = None
-
-    def login_user(self, user):
-        self.logged_in_user = user
-
-    @app.route("/create_directory", methods=["POST"])
-    def create_directory():
-        if file_system.logged_in_user:
-            path = request.form["path"]
-            directory_name = request.form["directory_name"]
-            file_system.create_directory(path, directory_name)
-            return redirect(url_for("home"))
-        else:
-            return "Please login to create a directory."
-
-    def list_directory(self, path):
-        if not self.logged_in_user:
-            print("Please login to the file system before listing a directory.")
-            return
-
-        # Check if the user has the necessary permissions to list the directory
-        if not self._has_read_permission(path):
-            print("You don't have permission to list the directory at the specified path.")
-            return
-
-        # List the contents of the directory
-        directory = self._get_directory(path)
-        if directory:
-            print(f"Listing contents of directory: {path}")
-            for name, element in directory.sub_directories.items():
-                print(f"Directory: {name}, Permissions: {self._get_permissions(element)}")
-
-            for name, file in directory.files.items():
-                print(f"File: {name}, Permissions: {self._get_permissions(file)}")
-        else:
-            print(f"Directory not found at path: {path}")
-
-    def create_file(self, path, file_name, content):
-        if not self.logged_in_user:
-            print("Please login to the file system before creating a file.")
-            return
-
-        # Check if the user has the necessary permissions to create a file
-        if not self._has_write_permission(path):
-            print("You don't have permission to create a file at the specified path.")
-            return
-
-        # Create the new file and add it to the specified directory
-        directory = self._get_directory(path)
-        if directory:
-            file = File(file_name, content, self.logged_in_user, directory.group)
-            directory.files[file_name] = file
-        else:
-            print(f"Directory not found at path: {path}")
-
-    def list_files(self, path):
-        if not self.logged_in_user:
-            print("Please login to the file system before listing files.")
-            return
-
-        # Check if the user has the necessary permissions to list files
-        if not self._has_read_permission(path):
-            print("You don't have permission to list files at the specified path.")
-            return
-
-        # List the files in the directory along with their permissions
-        directory = self._get_directory(path)
-        if directory:
-            print(f"Listing files in directory: {path}")
-            for name, file in directory.files.items():
-                print(f"File: {name}, Permissions: {self._get_permissions(file)}")
-        else:
-            print(f"Directory not found at path: {path}")
-
-    def set_permissions(self, path, read=False, write=False, execute=False):
-        if not self.logged_in_user:
-            print("Please login to the file system before setting permissions.")
-            return
-
-        # Check if the user has the necessary permissions to set permissions
-        if not self._has_write_permission(path):
-            print("You don't have permission to set permissions at the specified path.")
-            return
-
-        # Set permissions for the file or directory
-        element = self._get_element(path)
-        if element:
-            if isinstance(element, File):
-                element.permissions.update_permissions(read=read, write=write, execute=execute)
-            else:
-                print("Permissions can only be set for files, not directories.")
-        else:
-            print(f"File or directory not found at path: {path}")
-
-    def _has_write_permission(self, path):
-        # Logic to check if the logged-in user has write permission for the specified path
-        return True
-
-    def _has_read_permission(self, path):
-        # Logic to check if the logged-in user has read permission for the specified path
-        return True
-    
-    def _get_element(self, path):
-        current_element = self.root_directory
-        elements = path.strip("/").split("/")
-        for element in elements:
-            if element in current_element.sub_directories:
-                current_element = current_element.sub_directories[element]
-            elif element in current_element.files:
-                current_element = current_element.files[element]
-            else:
-                return None
-        return current_element
-
-    def _add_to_path(self, path, directory):
-        current_element = self.root_directory
-        elements = path.strip("/").split("/")
-        for element in elements:
-            if not element:
-                continue  # Skip empty elements
-            if element in current_element.sub_directories:
-                current_element = current_element.sub_directories[element]
-            else:
-                print(f"{element} not found.")
-                return
-
-        current_element.sub_directories[directory.name] = directory
-
-
-
-    def _get_directory(self, path):
-        current_element = self.root_directory
-        elements = path.strip("/").split("/")
-        for element in elements:
-            if element in current_element.sub_directories:
-                current_element = current_element.sub_directories[element]
-            else:
-                return None
-
-        return current_element
-
-    def _get_permissions(self, element):
-        # Logic to get permissions for an element (file or directory)
-        # can use the element's owner and group attributes along with the logged-in user to determine permissions
-        return f"Read: {element.group.permissions.read}, Write: {element.group.permissions.write}, Execute: {element.group.permissions.execute}"
-
-# Before attempting to access a directory or file, print the constructed path
 def access_path(root_directory, path, user):
     current_element = root_directory
     elements = path.strip("/").split("/")
-    print(f"Accessing path: {path}")  # Add this line
     for element in elements:
         if element in current_element.sub_directories:
             current_element = current_element.sub_directories[element]
@@ -352,17 +101,53 @@ if __name__ == "__main__":
     access_path(file_system.root_directory, "/dir1/file1.txt", user2)
     access_path(file_system.root_directory, "/dir1/dir2/file2.txt", user2)
 
-    # Flask routes
 
-    @app.route("/")
-    def index():
-        return render_template("index.html")
+'''
+specify what parts of code are using the objects that have already defined.
 
-    @app.route("/dashboard", methods=["GET", "POST"])
-    def dashboard():
-        if request.method == "POST":
-            # Handle form submissions here
-            pass
-        return render_template("dashboard.html")
+User Interface/API classes/methods:
+Permissions: This class is used to manage the permissions of files and directories. 
+It has methods to update permissions and follows the Singleton pattern to ensure only 
+one instance of the class exists.
 
-    app.run(debug=True)
+User: Represents a user and has a method to add the user to a group.
+
+Group: Represents a group and has a Permissions object to manage group-level permissions.
+
+FileSystemElement: The base class for both File and Directory, representing a generic 
+file system element.
+
+File: Represents a file and inherits from FileSystemElement. It has an access method 
+to check if a user has permission to read the file and prints the content if allowed.
+
+Directory: Represents a directory and inherits from FileSystemElement. It can contain 
+sub-directories and files, and it also has an access method to print a message when accessing it.
+
+Persistence classes/methods:
+The code doesn't include any explicit persistence-related classes or methods, as the 
+file system data is not stored persistently in files or databases. However, there is 
+a FileSystem class that manages the file system and users' interactions with it, 
+which can be considered as a high-level persistence class.
+
+Judicious use of SOLID principles:
+Single Responsibility Principle (SRP): Each class has a clear and single responsibility, 
+such as managing permissions, representing users, files, directories, or the file system 
+itself.
+
+Open/Closed Principle (OCP): The classes are designed to be easily extensible without 
+modifying existing code. For example, I can create new types of file system elements 
+by subclassing FileSystemElement.
+
+Liskov Substitution Principle (LSP): Subclasses like File and Directory can be used 
+interchangeably with their base class FileSystemElement.
+
+Interface Segregation Principle (ISP): The code doesn't explicitly define interfaces, 
+but each class has a specific set of methods and attributes related to its purpose.
+
+Dependency Inversion Principle (DIP): The code doesn't show explicit dependency injection, 
+but it has well-defined relationships between classes, and the FileSystem class uses and 
+depends on other classes like User, File, and Directory.
+
+The code follows good principles of object-oriented design and keeps the responsibilities 
+of each class well-defined, making it maintainable and extensible.
+'''
