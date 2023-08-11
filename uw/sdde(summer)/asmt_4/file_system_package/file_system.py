@@ -1,6 +1,6 @@
-from directory import Directory
-from user import User
-from group import Group
+from .directory import Directory
+from .user import User
+from .group import Group
 
 class FileSystem:
     def __init__(self):

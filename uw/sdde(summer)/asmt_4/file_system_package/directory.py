@@ -1,4 +1,4 @@
-from file_system_element import FileSystemElement
+from .file_system_element import FileSystemElement
 
 class Directory(FileSystemElement):
     def __init__(self, name, parent=None):
