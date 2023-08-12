@@ -123,7 +123,7 @@ if __name__ == "__main__":
     user1 = User("user1")
     user2 = User("user2")
 
-    new_username = input("Enter the new username: ")
+    new_username = input("Enter the new username or press enter: ")
     add_user_to_database(new_username)
 
     conn = sqlite3.connect("filesystem.db")
