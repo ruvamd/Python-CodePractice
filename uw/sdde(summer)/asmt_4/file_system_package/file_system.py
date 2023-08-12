@@ -24,7 +24,6 @@ class FileSystem:
             conn.close()
             return None
 
-
     def create_directory(self, path, directory_name):
         if not self.logged_in_user:
             print("Please login to the file system before creating a directory.")
@@ -49,15 +48,12 @@ class FileSystem:
             print("You don't have permission to list the directory at the specified path.")
             return
 
-        # List the contents of the directory
+        # List the sub-directory names
         directory = self._get_directory(path)
         if directory:
-            print(f"Listing contents of directory: {path}")
-            for name, element in directory.sub_directories.items():
-                print(f"Directory: {name}, Permissions: {self._get_permissions(element)}")
-
-            for name, file in directory.files.items():
-                print(f"File: {name}, Permissions: {self._get_permissions(file)}")
+            print(f"Listing sub-directories of directory: {path}")
+            for name in directory.sub_directories:
+                print(f"Directory: {name}")
         else:
             print(f"Directory not found at path: {path}")
 
@@ -130,9 +126,9 @@ class FileSystem:
         current_element = self.root_directory
         elements = path.strip("/").split("/")
         for element in elements:
-            if element in current_element.sub_directories:
+            if element and element in current_element.sub_directories:
                 current_element = current_element.sub_directories[element]
-            elif element in current_element.files:
+            elif element and element in current_element.files:
                 current_element = current_element.files[element]
             else:
                 return None
@@ -141,12 +137,24 @@ class FileSystem:
     def _add_to_path(self, path, directory):
         current_element = self.root_directory
         elements = path.strip("/").split("/")
+        parent_id = None  # This will store the parent directory's ID
+
+        conn = sqlite3.connect("filesystem.db")
+        c = conn.cursor()
+
         for element in elements:
             if element in current_element.sub_directories:
+                parent_id = current_element.sub_directories[element].id
                 current_element = current_element.sub_directories[element]
             else:
                 print(f"{element} not found.")
+                conn.close()
                 return
+
+        # Insert the directory into the database
+        c.execute("INSERT INTO directories (name, parent_id) VALUES (?, ?)", (directory.name, parent_id))
+        conn.commit()
+        conn.close()
 
         current_element.sub_directories[directory.name] = directory
 
@@ -165,3 +173,17 @@ class FileSystem:
         # Logic to get permissions for an element (file or directory)
         # can use the element's owner and group attributes along with the logged-in user to determine permissions
         return f"Read: {element.group.permissions.read}, Write: {element.group.permissions.write}, Execute: {element.group.permissions.execute}"
+
+    def directory_exists(self, path):
+        conn = sqlite3.connect("filesystem.db")
+        c = conn.cursor()
+
+        # Query the directories table to check if the directory exists
+        c.execute("SELECT id FROM directories WHERE name = ?", (path,))
+        directory_id = c.fetchone()
+
+        conn.close()
+
+        return directory_id is not None
+    
+    

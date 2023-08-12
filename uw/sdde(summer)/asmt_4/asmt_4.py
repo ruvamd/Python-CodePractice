@@ -46,7 +46,6 @@ from file_system_package.file_system import FileSystem
 import sqlite3
 import os
 
-
 def access_path(root_directory, path, user):
     current_element = root_directory
     elements = path.strip("/").split("/")
@@ -150,7 +149,8 @@ if __name__ == "__main__":
         print("3. Create File")
         print("4. Update Permissions")
         print("5. Delete File or Directory")
-        print("6. Exit")
+        print("6. List Directories")
+        print("7. Exit")
         choice = input("Enter your choice: ")
 
         if choice == "1":
@@ -173,10 +173,16 @@ if __name__ == "__main__":
 
             parent_path = input("Enter parent path (e.g., '/dir1'): ")
             dir_name = input("Enter directory name: ")
-
+            
             # Create a new directory using file_system instance
             file_system.create_directory(parent_path, dir_name)
             print(f"Directory '{dir_name}' created at '{parent_path}'.")
+
+            # Check if the directory exists in the database
+            if file_system.directory_exists(parent_path + '/' + dir_name):
+                print(f"Directory '{dir_name}' exists in the database.")
+            else:
+                print(f"Directory '{dir_name}' was not stored in the database.")
 
         elif choice == "3":
             if logged_in_user is None:
@@ -215,6 +221,16 @@ if __name__ == "__main__":
             # ... (delete logic)
 
         elif choice == "6":
+            if logged_in_user is None:
+                print("Please login before listing directories.")
+                continue
+
+            parent_path = input("Enter the parent path to list (e.g., '/dir1'): ")
+            
+            # Use the list_directory method from your FileSystem instance
+            file_system.list_directory(parent_path)
+
+        elif choice == "7":
             break
         else:
             print("Invalid choice. Please choose again.")
