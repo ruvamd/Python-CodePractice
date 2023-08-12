@@ -1,3 +1,4 @@
+import sqlite3
 from .directory import Directory
 from .user import User
 from .group import Group
@@ -7,8 +8,22 @@ class FileSystem:
         self.root_directory = Directory("/")
         self.logged_in_user = None
 
-    def login_user(self, user):
-        self.logged_in_user = user
+    def login_user(self, username):
+        # Find the user in the database and set the logged_in_user attribute
+        conn = sqlite3.connect("filesystem.db")
+        c = conn.cursor()
+
+        c.execute("SELECT id FROM users WHERE name = ?", (str(username),))
+        user_id = c.fetchone()
+
+        if user_id:
+            self.logged_in_user = User(username)
+            conn.close()
+            return self.logged_in_user
+        else:
+            conn.close()
+            return None
+
 
     def create_directory(self, path, directory_name):
         if not self.logged_in_user:
