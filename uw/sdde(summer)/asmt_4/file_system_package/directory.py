@@ -1,3 +1,4 @@
+from pytest import File
 from .file_system_element import FileSystemElement
 
 class Directory(FileSystemElement):

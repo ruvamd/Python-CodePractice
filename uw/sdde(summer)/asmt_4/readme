@@ -1,0 +1,37 @@
+File System Application
+
+This is a simple file system application that allows you to manage directories, files, users, and groups. 
+It provides a command-line interface for interacting with the file system.
+
+Installation
+run asmt_4_app from dist folder
+
+sh
+python -m venv venv
+source venv/bin/activate
+Install the required dependencies:
+
+sh
+pip install -r requirements.txt
+Usage
+Initialize the database:
+
+sh
+python asmt_4.py
+Follow the on-screen instructions to create groups, users, and directories.
+
+Use the interactive menu to perform various actions such as creating files, setting permissions, deleting files or directories, listing directories, and more.
+
+To run tests, use the following command:
+
+sh
+Copy code
+pytest
+Commands
+Login: Login to the file system using a username.
+Create Directory: Create a new directory in the file system.
+Create File: Create a new file in a specified directory.
+Update Permissions: Set read and write permissions for files or directories.
+Delete File or Directory: Delete a file or directory.
+List Directories: List directories and files in a specified directory.
+Exit: Exit the application.

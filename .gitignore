@@ -93,3 +93,7 @@ lib
 uw/ssde(summer)/asmt_4/dist
 uw/ssde(summer)/asmt_4/build
 uw/ssde(summer)/asmt_4/asmt_4_app.spec
+uw/ssde(summer)/asmt_4/filesystem.db
+uw/ssde(summer)/asmt_4/__pycache__
+uw/ssde(summer)/asmt_4/.pytest_cache
+uw/ssde(summer)/fsvenv

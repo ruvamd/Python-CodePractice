@@ -1,4 +1,6 @@
 import sqlite3
+
+from pytest import File
 from .directory import Directory
 from .user import User
 from .group import Group

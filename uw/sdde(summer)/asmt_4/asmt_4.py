@@ -43,8 +43,8 @@ from file_system_package.group import Group
 from file_system_package.permissions import Permissions
 from file_system_package.file_system import FileSystem
 
-import sqlite3
 import os
+import sqlite3
 
 def access_path(root_directory, path, user):
     current_element = root_directory
@@ -173,7 +173,14 @@ if __name__ == "__main__":
 
             parent_path = input("Enter parent path (e.g., '/dir1'): ")
             dir_name = input("Enter directory name: ")
-            
+
+            # Ensure the parent_path starts with "/"
+            if not parent_path.startswith("/"):
+                parent_path = "/" + parent_path
+
+            print(f"DEBUG - Parent path: {parent_path}")
+            print(f"DEBUG - Directory name: {dir_name}")
+
             # Create a new directory using file_system instance
             file_system.create_directory(parent_path, dir_name)
             print(f"Directory '{dir_name}' created at '{parent_path}'.")
@@ -217,8 +224,28 @@ if __name__ == "__main__":
 
             element_path = input("Enter element path to delete (e.g., '/dir1/file1.txt'): ")
 
-            # Implement logic to delete file or directory using file_system instance
-            # ... (delete logic)
+            # Use the _get_element method to retrieve the element to be deleted
+            element_to_delete = file_system._get_element(element_path)
+
+            if element_to_delete:
+                if isinstance(element_to_delete, Directory):
+                    # Logic to delete a directory
+                    parent_directory = file_system._get_directory(os.path.dirname(element_path))
+                    if parent_directory:
+                        del parent_directory.sub_directories[element_to_delete.name]
+                        print(f"Directory '{element_path}' deleted.")
+                    else:
+                        print(f"Parent directory for '{element_path}' not found.")
+                elif isinstance(element_to_delete, File):
+                    # Logic to delete a file
+                    parent_directory = file_system._get_directory(os.path.dirname(element_path))
+                    if parent_directory:
+                        del parent_directory.files[element_to_delete.name]
+                        print(f"File '{element_path}' deleted.")
+                    else:
+                        print(f"Parent directory for '{element_path}' not found.")
+            else:
+                print(f"Element '{element_path}' not found.")
 
         elif choice == "6":
             if logged_in_user is None:
