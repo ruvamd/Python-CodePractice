@@ -91,7 +91,10 @@ lib
 .docker_notes/
 
 uw/ssde(summer)/asmt_4/dist
-uw/ssde(summer)/asmt_4/build
+uw/ssde(summer)/asmt_4/build/asmt_4_app
+uw/ssde(summer)/asmt_4/build/asmt_4_app/__pycache__
+uw/ssde(summer)/asmt_4/build/asmt_4_app/base_library.zip
+uw/ssde(summer)/asmt_4/filesystem.db
 uw/ssde(summer)/asmt_4/asmt_4_app.spec
 uw/ssde(summer)/asmt_4/filesystem.db
 uw/ssde(summer)/asmt_4/__pycache__
