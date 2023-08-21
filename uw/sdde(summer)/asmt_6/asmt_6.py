@@ -1,3 +1,4 @@
+# from asmt_4
 '''
 Using SQLite as the persistance for the directories/files,compile code into a functioning application. 
 This application should be executable.The executable should be in web ui.
@@ -35,6 +36,9 @@ Rubric:
 3. Judicious use of SOLID principles 
 '''
 
+import os
+import sqlite3
+
 from file_system_package.file_system_element import FileSystemElement
 from file_system_package.file import File
 from file_system_package.directory import Directory
@@ -42,9 +46,6 @@ from file_system_package.user import User
 from file_system_package.group import Group
 from file_system_package.permissions import Permissions
 from file_system_package.file_system import FileSystem
-
-import os
-import sqlite3
 
 def access_path(root_directory, path, user):
     current_element = root_directory
@@ -270,31 +271,19 @@ if __name__ == "__main__":
     file_system.login_user("user1")
 
     # Create new directories
-    file_system.create_directory("/", "dir1")
-    file_system.create_directory("/dir1", "dir2")
-    file_system.create_directory("/dir1", "dir3")
+
 
     # Create new files
-    file_system.create_file("/dir1", "file1.txt", "This is the content of file 1")
-    file_system.create_file("/dir1/dir2", "file2.txt", "This is the content of file 2")
+
 
     # Set permissions for directories and files
-    file_system.set_permissions("/dir1", read=True, write=False)
-    file_system.set_permissions("/dir1/dir2", write=True)
+    file_system.set_permissions("/", read=True, write=False)
+
 
     # List directories and files
     file_system.list_directory("/")
-    file_system.list_directory("/dir1")
-    file_system.list_files("/dir1")
-    file_system.list_files("/dir1/dir2")
 
-    # Access files using access path for user1
-    access_path(file_system.root_directory, "/dir1/file1.txt", user1)
-    access_path(file_system.root_directory, "/dir1/dir2/file2.txt", user1)
 
-    # Access files using access path for user2
-    file_system.login_user(user2)
-    access_path(file_system.root_directory, "/dir1/file1.txt", user2)
-    access_path(file_system.root_directory, "/dir1/dir2/file2.txt", user2)
+
 
 
