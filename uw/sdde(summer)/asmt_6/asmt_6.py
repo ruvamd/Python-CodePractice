@@ -37,7 +37,6 @@ Rubric:
 '''
 
 import os
-import sqlite3
 
 from file_system_package.file_system_element import FileSystemElement
 from file_system_package.file import File
@@ -46,6 +45,9 @@ from file_system_package.user import User
 from file_system_package.group import Group
 from file_system_package.permissions import Permissions
 from file_system_package.file_system import FileSystem
+
+from sql_alchemy import create_tables, get_session
+create_tables()
 
 def access_path(root_directory, path, user):
     current_element = root_directory
@@ -59,64 +61,15 @@ def access_path(root_directory, path, user):
         else:
             print(f"{element} not found.")
 
-def initialize_database():
-        conn = sqlite3.connect("filesystem.db")
-        c = conn.cursor()
-
-        c.execute('''
-            CREATE TABLE IF NOT EXISTS users (
-                id INTEGER PRIMARY KEY,
-                name TEXT
-            )
-        ''')
-
-        c.execute('''
-            CREATE TABLE IF NOT EXISTS groups (
-                id INTEGER PRIMARY KEY,
-                name TEXT
-            )
-        ''')
-
-        c.execute('''
-            CREATE TABLE IF NOT EXISTS directories (
-                id INTEGER PRIMARY KEY,
-                name TEXT,
-                parent_id INTEGER,
-                FOREIGN KEY (parent_id) REFERENCES directories (id)
-            )
-        ''')
-
-        c.execute('''
-            CREATE TABLE IF NOT EXISTS files (
-                id INTEGER PRIMARY KEY,
-                name TEXT,
-                content TEXT,
-                directory_id INTEGER,
-                owner_id INTEGER,
-                group_id INTEGER,
-                FOREIGN KEY (directory_id) REFERENCES directories (id),
-                FOREIGN KEY (owner_id) REFERENCES users (id),
-                FOREIGN KEY (group_id) REFERENCES groups (id)
-            )
-        ''')
-
-        conn.commit()
-        conn.close()
-
 def add_user_to_database(username):
-    conn = sqlite3.connect("filesystem.db")
-    c = conn.cursor()
-
-    # Insert the new username into the 'users' table
-    c.execute("INSERT INTO users (name) VALUES (?)", (username,))
-
-    conn.commit()
-    conn.close()
+    with get_session() as session:
+        new_user = User(name=username)
+        session.add(new_user)
+        session.commit()
 
 if __name__ == "__main__":
     file_system = FileSystem()
-    initialize_database()
-    
+
     # Create new groups and users
     group1 = Group("group1")
     group2 = Group("group2")
@@ -270,15 +223,8 @@ if __name__ == "__main__":
     # Login users to the file system
     file_system.login_user("user1")
 
-    # Create new directories
-
-
-    # Create new files
-
-
     # Set permissions for directories and files
     file_system.set_permissions("/", read=True, write=False)
-
 
     # List directories and files
     file_system.list_directory("/")

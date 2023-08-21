@@ -1,9 +1,10 @@
-import sqlite3
-
 from pytest import File
 from directory import Directory
 from user import User
 from group import Group
+
+from sql_alchemy import get_session
+from file_system_package.models import User # Import other necessary models
 
 class FileSystem:
     def __init__(self):
@@ -11,20 +12,14 @@ class FileSystem:
         self.logged_in_user = None
 
     def login_user(self, username):
-        # Find the user in the database and set the logged_in_user attribute
-        conn = sqlite3.connect("filesystem.db")
-        c = conn.cursor()
+        with get_session() as session:
+            user = session.query(User).filter_by(name=username).first()
 
-        c.execute("SELECT id FROM users WHERE name = ?", (str(username),))
-        user_id = c.fetchone()
-
-        if user_id:
-            self.logged_in_user = User(username)
-            conn.close()
-            return self.logged_in_user
-        else:
-            conn.close()
-            return None
+            if user:
+                self.logged_in_user = user
+                return user
+            else:
+                return None
 
     def create_directory(self, path, directory_name):
         if not self.logged_in_user:

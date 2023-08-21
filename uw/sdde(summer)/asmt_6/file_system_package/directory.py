@@ -1,6 +1,8 @@
-
 from file_system_package.file import File
 from file_system_element import FileSystemElement
+
+from sql_alchemy import get_session
+from file_system_package.models import Directory, File  # Import other necessary models
 
 class Directory(FileSystemElement):
     def __init__(self, name, parent=None):

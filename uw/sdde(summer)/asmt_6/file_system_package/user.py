@@ -1,3 +1,5 @@
+from sql_alchemy import get_session
+from file_system_package.models import User  # Import other necessary models
 
 class User:
     def __init__(self, name):
