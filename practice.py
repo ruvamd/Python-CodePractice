@@ -1,11 +1,5 @@
-class Solution:
-    def isPalindrome(self, s: str) -> bool:
-        s = ''.join(filter(str.isalnum, s)).lower()
-        return s == s[::-1]
+def repeat(text,repetitions=2):
+    return f'{text}\n'*repetitions
 
-solution = Solution()
-
-print(solution.isPalindrome("racecar"))  # Output: True
-print(solution.isPalindrome("hello"))    # Output: False
-print(solution.isPalindrome("madam"))    # Output: True
-print(solution.isPalindrome("Able was I ere I saw Elba"))  # Output: True
+text=input('Enter text: ')
+print(repeat(text))
