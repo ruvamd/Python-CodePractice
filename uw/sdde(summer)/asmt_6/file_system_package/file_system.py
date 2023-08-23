@@ -1,9 +1,9 @@
-from pytest import File
-from directory import Directory
+from file_system_package.file import File
+from file_system_package.directory import Directory
 from user import User
 from group import Group
 
-from sql_alchemy import get_session
+from asmt_6.sql_alchemy import get_session
 from file_system_package.models import User # Import other necessary models
 
 class FileSystem:

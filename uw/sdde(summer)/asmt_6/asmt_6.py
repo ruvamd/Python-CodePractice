@@ -46,8 +46,9 @@ from file_system_package.group import Group
 from file_system_package.permissions import Permissions
 from file_system_package.file_system import FileSystem
 
-from sql_alchemy import create_tables, get_session
-create_tables()
+from sql_alchemy import get_session
+from file_system_package.models import User
+
 
 def access_path(root_directory, path, user):
     current_element = root_directory
