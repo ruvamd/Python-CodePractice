@@ -100,3 +100,9 @@ uw/ssde(summer)/asmt_4/filesystem.db
 uw/ssde(summer)/asmt_4/__pycache__
 uw/ssde(summer)/asmt_4/.pytest_cache
 uw/ssde(summer)/fsvenv
+
+uw/ssde(summer)/asmt_6/__pycache__
+uw/ssde(summer)/asmt_6/dist
+uw/ssde(summer)/asmt_6/build
+uw/ssde(summer)/asmt_6/asmt_6_diagram.drawio
+uw/ssde(summer)/asmt_6/build/my_app/base_library.zip

@@ -79,16 +79,6 @@ if __name__ == "__main__":
     new_username = input("Enter the new username or press enter: ")
     add_user_to_database(new_username)
 
-    conn = sqlite3.connect("filesystem.db")
-    c = conn.cursor()
-
-    c.execute("INSERT INTO groups (name) VALUES (?)", (group1.name,))
-    c.execute("INSERT INTO groups (name) VALUES (?)", (group2.name,))
-    c.execute("INSERT INTO users (name) VALUES (?)", (user1.name,))
-    c.execute("INSERT INTO users (name) VALUES (?)", (user2.name,))
-
-    conn.commit()
-    conn.close()
 
     user1.add_to_group(group1)
     user2.add_to_group(group2)
