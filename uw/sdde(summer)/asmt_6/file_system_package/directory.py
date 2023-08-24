@@ -1,6 +1,7 @@
 from .file_system_element import FileSystemElement
 from .file import File
-from .models import Directory, Group, Permissions  # Import other necessary models
+from .models import Directory,File, Group, Permissions  # Import other necessary models
+from .user import UserClass
 
 class Directory(FileSystemElement):
     def __init__(self, name):

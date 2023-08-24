@@ -41,13 +41,13 @@ import os
 from file_system_package.file_system_element import FileSystemElement
 from file_system_package.file import File
 from file_system_package.directory import Directory
-from file_system_package.user import User
+from file_system_package.user import UserClass
 from file_system_package.group import Group
 from file_system_package.permissions import Permissions
 from file_system_package.file_system import FileSystem
 
 from sql_alchemy import get_session
-from file_system_package.models import User
+from file_system_package.user import UserClass
 
 
 def access_path(root_directory, path, user):
