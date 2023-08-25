@@ -24,7 +24,8 @@ class UserManager:
 
         if user:
             print(f"Welcome, {username}!")
-            return user.id  # Return user ID instead of the user object
+            return user  # Return the User object
         else:
             print("Invalid credentials. Please check your username and password.")
             return None
+

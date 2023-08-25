@@ -1,6 +1,8 @@
 from user_manager import UserManager
 from directory_manager import DirectoryManager
 from file_manager import FileManager
+from models import Session
+
 
 def main_menu():
     print("1. Create User")
@@ -40,6 +42,7 @@ def main():
                 directory_name = input("Enter directory name: ")
                 user_id = user  # Store user ID
                 directory_manager.create_directory(user_id, directory_name)  # Pass user ID
+
             elif choice == '4':
                 user_directories = directory_manager.list_directories(user)
                 if user_directories:
@@ -48,6 +51,7 @@ def main():
                         directory_manager.delete_directory(user_directories[dir_index - 1])
                     else:
                         print("Invalid index.")
+
             elif choice == '5':
                 user_directories = directory_manager.list_directories(user)
                 if user_directories:
@@ -57,18 +61,26 @@ def main():
                         directory_manager.update_directory(user_directories[dir_index - 1], new_name)
                     else:
                         print("Invalid index.")
+
             elif choice == '6':
                 directory_manager.list_directories(user)
+
             elif choice == '7':
-                user_directories = directory_manager.list_directories(user)
-                if user_directories:
-                    dir_index = int(input("Enter the index of the directory to add a file to: "))
-                    if 1 <= dir_index <= len(user_directories):
-                        directory = user_directories[dir_index - 1]
-                        file_name = input("Enter the name of the file: ")
-                        file_manager.create_file(directory, file_name)
+                if user:
+                    user_directories = directory_manager.list_directories(user)
+                    if user_directories:
+                        dir_index = int(input("Enter the index of the directory to add a file to: "))
+                        if 1 <= dir_index <= len(user_directories):
+                            directory = user_directories[dir_index - 1]
+                            file_name = input("Enter the name of the file: ")
+                            file_manager.create_file(directory, file_name)
+                        else:
+                            print("Invalid index.")
                     else:
-                        print("Invalid index.")
+                        print("No directories found for this user.")
+                else:
+                    print("Please log in first.")
+
             elif choice == '8':
                 user_directories = directory_manager.list_directories(user)
                 if user_directories:
@@ -86,6 +98,7 @@ def main():
                             print("No files to delete in this directory.")
                     else:
                         print("Invalid directory index.")
+
             elif choice == '9':
                     user_directories = directory_manager.list_directories(user)
                     if user_directories:
@@ -95,6 +108,7 @@ def main():
                             file_manager.list_files(directory)
                         else:
                             print("Invalid directory index.")
+
             elif choice == '10':
                     print("Exiting the app. Goodbye!")
                     break

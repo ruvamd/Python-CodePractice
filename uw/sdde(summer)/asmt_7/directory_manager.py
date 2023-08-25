@@ -30,14 +30,14 @@ class DirectoryManager:
     
     def list_directories(self, user):
         session = Session()
-        
-        user_directories = session.query(Directory).filter_by(owner=user).all()
-        
+
+        user_directories = session.query(Directory).filter(Directory.owner_id == user.id).all()
+
         if user_directories:
             print("User Directories:")
             for index, directory in enumerate(user_directories, start=1):
                 print(f"{index}. {directory.name}")
         else:
             print("No directories found for this user.")
-        
+
         session.close()
