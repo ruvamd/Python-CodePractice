@@ -1,0 +1,40 @@
+File System App
+The File System App is a command-line application that allows users to create directories, manage files within those directories, and perform various file system operations.
+
+unarchive asmt_7.zip to your local machine:
+
+sh
+Navigate to the project directory:
+
+sh
+cd asmt_7
+Install the required dependencies:
+
+sh
+pip install -r requirements.txt
+Run the application:
+
+sh
+python filesystem_app.py
+Start the application by running filesystem_app.py.
+
+Choose one of the following options:
+
+Create User (1): Create a new user by entering a username and password.
+Login (2): Log in to the application using your username and password.
+Create Directory (3): Create a new directory under the logged-in user's account.
+Delete Directory (4): Delete a directory from the logged-in user's account.
+Update Directory (5): Update the name of a directory.
+List Directories (6): List all directories owned by the logged-in user.
+Create File (7): Create a new file within a selected directory.
+Delete File (8): Delete a file from a selected directory.
+List Files (9): List all files within a selected directory.
+Exit (10): Exit the application.
+
+Follow the prompts to interact with the application based on your chosen option.
+
+Notes
+User data, directories, and files are stored in a local SQLite database.
+Each user has their own set of directories and files.
+Directories and files are associated with the logged-in user.
+You can log in as an existing user or create a new user.
