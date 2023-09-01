@@ -1,3 +1,4 @@
+import os
 from models import Session, File
 
 class FileManager:
@@ -6,10 +7,17 @@ class FileManager:
         
         new_file = File(name=file_name, directory=directory)
         session.add(new_file)
-        
         session.commit()
-        print(f"File '{file_name}' created successfully in '{directory.name}'.")
         session.close()
+
+        # Create the file in the root directory of the project
+        root_directory = os.path.dirname(os.path.abspath(__file__))
+        file_path = os.path.join(root_directory, directory.name, file_name)
+        with open(file_path, "w") as file:
+            file.write("This is the content of the file.")
+
+        print(f"File '{file_name}' created successfully in '{directory.name}'.")
+        
 
     def delete_file(self, file):
         session = Session()

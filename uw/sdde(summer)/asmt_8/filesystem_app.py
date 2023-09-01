@@ -1,7 +1,7 @@
 from user_manager import UserManager
 from directory_manager import DirectoryManager
 from file_manager import FileManager
-from models import Session
+from models import Session,User, Directory, File
 
 
 def main_menu():
@@ -41,7 +41,7 @@ def main():
             if choice == '3':
                 directory_name = input("Enter directory name: ")
                 user_id = user  # Store user ID
-                directory_manager.create_directory(user_id, directory_name)  # Pass user ID
+                directory_manager.create_directory(user.id, directory_name)  # Pass user ID
 
             elif choice == '4':
                 user_directories = directory_manager.list_directories(user)
@@ -63,7 +63,14 @@ def main():
                         print("Invalid index.")
 
             elif choice == '6':
-                directory_manager.list_directories(user)
+                user_directories = directory_manager.list_directories(user)
+                if user_directories:
+                    print("User Directories:")
+                    for index, directory in enumerate(user_directories, start=1):
+                        print(f"{index}. {directory.name}")
+                        print()
+                else:
+                    print("No directories found for this user.")
 
             elif choice == '7':
                 if user:
@@ -72,8 +79,11 @@ def main():
                         dir_index = int(input("Enter the index of the directory to add a file to: "))
                         if 1 <= dir_index <= len(user_directories):
                             directory = user_directories[dir_index - 1]
+                            session = Session()  # Create a new session
+                            directory_from_db = session.query(Directory).get(directory.id)  # Retrieve directory from the session
+                            session.close()  # Close the session
                             file_name = input("Enter the name of the file: ")
-                            file_manager.create_file(directory, file_name)
+                            file_manager.create_file(directory_from_db, file_name)
                         else:
                             print("Invalid index.")
                     else:
