@@ -1,39 +1,33 @@
-from unittest.mock import patch
 import pytest
+from unittest.mock import patch, Mock
 from file_manager import FileManager
-from models import Session, File, Directory, User
 
+# Define a test directory and files
+test_directory = Mock(name="Test Directory")
+test_files = [Mock(name=f"File {i}") for i in range(1, 4)]  # Replace with your actual file objects
 
+def test_list_files():
+    # Create an instance of the FileManager
+    file_manager = FileManager()
 
-# Mock the Session class and its methods
-class MockSession:
-    def add(self, obj):
-        pass
+    # Mock the database query to return the test_directory and test_files
+    with patch('file_manager.Session') as mock_session:
+        mock_session.query().filter_by().all.return_value = test_files
 
-    def commit(self):
-        pass
+        # Call the list_files method
+        with patch('builtins.print') as mock_print:
+            file_manager.list_files(test_directory)
 
-    def close(self):
-        pass
+    # Assert that the method printed the correct messages
+    expected_output = [
+        f"Files in '{test_directory.name}':",
+        "1. File 1",
+        "2. File 2",
+        "3. File 3"
+    ]
 
-# Mock the FileManager class to use the mock session
-class MockFileManager(FileManager):
-    def __init__(self):
-        self.session = MockSession()
+    mock_print.assert_called_with(*expected_output)
 
-@pytest.fixture
-def mock_file_manager():
-    return MockFileManager()
-
-@patch('file_manager.Session', new_callable=MockSession)
-def test_create_file(mock_session, mock_file_manager):
-    # Create a mock user and directory
-    user = User(id=1, username='testuser', password='testpassword')
-    directory = Directory(id=1, name='testdir', owner=user)
-    
-    # Call the create_file method
-    mock_file_manager.create_file(directory, 'testfile.txt')
-    
-    # Check if the session's add and commit methods were called
-    assert mock_session.add.called
-    assert mock_session.commit.called
+# Run the tests
+if __name__ == '__main__':
+    pytest.main()

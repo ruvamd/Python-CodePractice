@@ -78,12 +78,9 @@ def main():
                     if user_directories:
                         dir_index = int(input("Enter the index of the directory to add a file to: "))
                         if 1 <= dir_index <= len(user_directories):
-                            directory = user_directories[dir_index - 1]
-                            session = Session()  # Create a new session
-                            directory_from_db = session.query(Directory).get(directory.id)  # Retrieve directory from the session
-                            session.close()  # Close the session
+                            directory_name = user_directories[dir_index - 1].name  # Get directory name, not ID
                             file_name = input("Enter the name of the file: ")
-                            file_manager.create_file(directory_from_db, file_name)
+                            file_manager.create_file(user, directory_name, file_name) 
                         else:
                             print("Invalid index.")
                     else:
