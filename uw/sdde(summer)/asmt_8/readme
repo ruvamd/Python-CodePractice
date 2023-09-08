@@ -3,20 +3,10 @@ The File System App is a command-line application that allows users to create di
 
 unarchive asmt_8.zip to your local machine:
 
-sh
-Navigate to the project directory:
-
-sh
-cd asmt_8
-Install the required dependencies:
-
-sh
-pip install -r requirements.txt
-Run the application:
-
-sh
-python filesystem_app.py
-Start the application by running filesystem_app.py.
+Navigate to the project directory: cd asmt_8
+Install the required dependencies: pip install -r requirements.txt
+Run the application: python filesystem_app.py or from dist folder executable file.
+Start the application by running filesystem_app.py
 
 Choose one of the following options:
 
@@ -39,3 +29,46 @@ User data, directories, and files are stored in a local SQLite database.
 Each user has their own set of directories and files.
 Directories and files are associated with the logged-in user.
 You can log in as an existing user or create a new user.
+
+
+current project tree:
+(fsvenv) ➜  asmt_8 git:(master) ✗ tree
+.
+├── __init__.py
+├── __pycache__
+│   ├── directory_manager.cpython-311.pyc
+│   ├── file_manager.cpython-311.pyc
+│   ├── models.cpython-311.pyc
+│   └── user_manager.cpython-311.pyc
+├── build
+│   └── filesystem_app
+│       ├── Analysis-00.toc
+│       ├── EXE-00.toc
+│       ├── PKG-00.toc
+│       ├── PYZ-00.pyz
+│       ├── PYZ-00.toc
+│       ├── base_library.zip
+│       ├── filesystem_app.pkg
+│       ├── localpycs
+│       │   ├── pyimod01_archive.pyc
+│       │   ├── pyimod02_importers.pyc
+│       │   ├── pyimod03_ctypes.pyc
+│       │   └── struct.pyc
+│       ├── warn-filesystem_app.txt
+│       └── xref-filesystem_app.html
+├── directory_manager.py
+├── dist
+│   └── filesystem_app
+├── file_manager.py
+├── filesystem_app.py
+├── filesystem_app.spec
+├── models.py
+├── readme
+├── requirements.txt
+├── tests
+│   ├── __pycache__
+│   │   └── test_file_manager.cpython-311-pytest-7.4.0.pyc
+│   └── test_file_manager.py
+└── user_manager.py
+
+8 directories, 29 files
