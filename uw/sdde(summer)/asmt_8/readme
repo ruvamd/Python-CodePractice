@@ -1,13 +1,13 @@
 File System App
 The File System App is a command-line application that allows users to create directories, manage files within those directories, and perform various file system operations.
 
-unarchive asmt_7.zip to your local machine:
+unarchive asmt_8.zip to your local machine:
 
 sh
 Navigate to the project directory:
 
 sh
-cd asmt_7
+cd asmt_8
 Install the required dependencies:
 
 sh
@@ -27,6 +27,7 @@ Delete Directory (4): Delete a directory from the logged-in user's account.
 Update Directory (5): Update the name of a directory.
 List Directories (6): List all directories owned by the logged-in user.
 Create File (7): Create a new file within a selected directory.
+    note:it creates in root directory of the machine
 Delete File (8): Delete a file from a selected directory.
 List Files (9): List all files within a selected directory.
 Exit (10): Exit the application.
