@@ -1,0 +1,35 @@
+/* styles.css */
+
+/* Set background color for the body element */
+body {
+    background-color: #E0E0E2;
+}
+
+/* Set text color for h1 and h2 elements */
+h1, h2 {
+    color: #721817;
+}
+
+/* Center-align text for elements with the class "center-text" */
+.center-text {
+    text-align: center;
+}
+
+/* Style span elements inside h2 elements */
+h2 > span {
+    color: #FA9F42;
+    font-size: 0.75em;
+}
+
+/* Style HTML element with id "logo" */
+#logo {
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
+/* Style HTML element with id "copyright" */
+#copyright {
+    padding-top: 12px;
+    font-size: 0.75em;
+}
