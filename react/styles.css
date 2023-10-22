@@ -1,35 +1,42 @@
-/* styles.css */
-
-/* Set background color for the body element */
-body {
-    background-color: #E0E0E2;
+/* Reset some default browser styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-/* Set text color for h1 and h2 elements */
-h1, h2 {
-    color: #721817;
-}
-
-/* Center-align text for elements with the class "center-text" */
-.center-text {
+/* Apply basic styles to the header and navigation menu */
+header {
     text-align: center;
+    padding: 10px;
+    background-color: #f4f4f4;
+}
+nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    background-color: #333;
+}
+nav ul li {
+    margin: 0 10px;
+}
+nav a {
+    color: #fff;
+    text-decoration: none;
 }
 
-/* Style span elements inside h2 elements */
-h2 > span {
-    color: #FA9F42;
-    font-size: 0.75em;
+/* Style the main content sections */
+.promo img {
+    width: 100%;
 }
-
-/* Style HTML element with id "logo" */
-#logo {
-    margin-left: auto;
-    margin-right: auto;
-    display: block;
+.content {
+    display: flex;
+    justify-content: space-around;
 }
-
-/* Style HTML element with id "copyright" */
-#copyright {
-    padding-top: 12px;
-    font-size: 0.75em;
+.column {
+    text-align: center;
+    margin: 20px;
+}
+.column img {
+    max-width: 100%;
 }

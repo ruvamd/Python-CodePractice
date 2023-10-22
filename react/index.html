@@ -1,26 +1,49 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Little Lemon</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
+    <title>Little Lemon Restaurant</title>
 </head>
 <body>
-    <div>
-        <img src="logo.png" id="logo">
-    </div>
-    <div class="center-text">
-        <h1>Our Menu</h1>
-        <h2>Falafel <span>NEW</span></h2>
-        <p>Chickpea, herbs, spices.</p>
-        <h2>Pasta Salad</h2>
-        <p>Pasta, vegetables, mozzarella.</p>
-        <h2>Fried Calamari</h2>
-        <p>Squid, buttermilk.</p>
-    </div>
-    <div class="center-text">
-        <p id="copyright">
-            Copyright Little Lemon
-        </p>
-    </div>
+    <header>
+        <img src="logo.png" alt="Little Lemon Restaurant">
+    </header>
+    <nav>
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Menu</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+    </nav>
+    <main>
+        <section class="promo">
+            <img src="promo.jpg" alt="Special Promotion">
+        </section>
+        <section class="content">
+            <article class="column">
+                <img src="dish1.jpg" alt="Dish 1">
+                <p>Description of Dish 1.</p>
+            </article>
+            <article class="column">
+                <img src="dish2.jpg" alt="Dish 2">
+                <p>Description of Dish 2.</p>
+            </article>
+            <article class="column">
+                <img src="dish3.jpg" alt="Dish 3">
+                <p>Description of Dish 3.</p>
+            </article>
+        </section>
+    </main>
+    <footer>
+        <div class="left-column">
+            <img src="logo-small.png" alt="Little Lemon Logo"> 
+        </div>
+        <div class="right-column">
+            <p>&copy; 2023 Little Lemon Restaurant</p>
+        </div>
+    </footer>
 </body>
 </html>
